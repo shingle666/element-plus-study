@@ -1,0 +1,22 @@
+{
+  "name": "study_element_plus",
+  "version": "1.0.0",
+  "description": "## 学习目标 通过一个月的系统学习，全面掌握 Element Plus UI 框架的使用，能够熟练运用各种组件构建现代化的 Vue 3 应用程序。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.11.0",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1",
+    "vuex": "^4.1.0"
+  }
+}
