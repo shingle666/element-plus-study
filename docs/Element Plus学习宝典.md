@@ -426,7 +426,7 @@ npm --version   # 确保 >= 8.0.0
 
 **2. 克隆学习项目**
 ```bash
-git clone https://github.com/your-username/element-plus-study.git
+git clone https://github.com/shingle666/element-plus-study.git
 cd element-plus-study
 ```
 
@@ -635,15 +635,15 @@ graph TD
 
 **如果这个学习计划对你有帮助，请给个 ⭐️ 支持一下！**
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/element-plus-study?style=social)](https://github.com/your-username/element-plus-study)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/element-plus-study?style=social)](https://github.com/your-username/element-plus-study)
+[![GitHub stars](https://img.shields.io/github/stars/shingle666/element-plus-study?style=social)](https://github.com/shingle666/element-plus-study)
+[![GitHub forks](https://img.shields.io/github/forks/shingle666/element-plus-study?style=social)](https://github.com/shingle666/element-plus-study)
 
 ### 🔗 相关链接
 
 [📚 开始学习](./基础概念/01.设计原则与基础概念.md) |
 [🏠 返回首页](./index.md) |
-[💬 加入讨论](https://github.com/your-username/element-plus-study/discussions) |
-[🐛 报告问题](https://github.com/your-username/element-plus-study/issues)
+[💬 加入讨论](https://github.com/shingle666/element-plus-study/discussions) |
+[🐛 报告问题](https://github.com/shingle666/element-plus-study/issues)
 
 ---
 

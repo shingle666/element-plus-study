@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/edlo-cn/element-plus-study.git"
+    "url": "https://github.com/shingle666/element-plus-study.git"
   },
   "bugs": {
-    "url": "https://github.com/edlo-cn/element-plus-study/issues"
+    "url": "https://github.com/shingle666/element-plus-study/issues"
   },
   "homepage": "https://edlo.cn",
   "directories": {
