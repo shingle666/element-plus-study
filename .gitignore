@@ -4,3 +4,4 @@
 .vite
 node_modules
 .DS_Store
+/docs/.vitepress/cache

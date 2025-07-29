@@ -1,19 +1,30 @@
 {
   "name": "study_element_plus",
-  "version": "1.0.0",
-  "description": "## 学习目标 通过一个月的系统学习，全面掌握 Element Plus UI 框架的使用，能够熟练运用各种组件构建现代化的 Vue 3 应用程序。",
+  "version": "1.0.1",
+  "description": "Element Plus 学习宝典，全面掌握 Element Plus 框架的使用，能够熟练运用各种组件构建现代化的 Vue 3 应用程序。",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/study_element_plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/study_element_plus/issues"
+  },
+  "homepage": "https://github.com/yourusername/study_element_plus#readme",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "element-plus",
+    "vue3",
+    "vuepress"
+  ],
+  "author": "tanzhenxing",
   "license": "ISC",
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
