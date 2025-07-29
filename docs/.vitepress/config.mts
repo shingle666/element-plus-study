@@ -342,7 +342,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/element-plus/element-plus' },
+      { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' },
       { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
     ],
 
