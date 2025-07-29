@@ -86,7 +86,7 @@
                 主题系统深入定制
               </el-menu-item>
               <el-menu-item index="i18n">
-                <el-icon><Globe /></el-icon>
+                <el-icon><Connection /></el-icon>
                 国际化深入应用
               </el-menu-item>
               <el-menu-item index="performance">
@@ -149,7 +149,7 @@ import {
   ChatDotRound,
   Monitor,
   Brush,
-  Globe,
+  Connection,
   Cpu,
   Link,
   ArrowLeft,
@@ -171,7 +171,7 @@ export default {
     ChatDotRound,
     Monitor,
     Brush,
-    Globe,
+    Connection,
     Cpu,
     Link,
     ArrowLeft,
