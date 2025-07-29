@@ -2,6 +2,14 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    ssr: {
+      noExternal: ['element-plus']
+    },
+    optimizeDeps: {
+      include: ['element-plus']
+    }
+  },
   title: "Element Plus 学习宝典",
   description: "Element Plus 深度学习计划 - 系统掌握组件库开发",
   head: [
@@ -21,6 +29,7 @@ export default defineConfig({
     nav: [
       { text: '🏠 首页', link: '/' },
       { text: '📚 学习宝典', link: '/Element Plus学习宝典' },
+      { text: '🎯 组件演示', link: '/element-plus-demo' },
       {
         text: '📋 基础学习',
         items: [

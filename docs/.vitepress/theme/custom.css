@@ -1,0 +1,110 @@
+/* Element Plus 在 VitePress 中的样式优化 */
+
+/* 确保 Element Plus 组件在文档中正常显示 */
+.vp-doc .el-button {
+  margin: 4px;
+}
+
+.vp-doc .el-input {
+  margin: 4px 0;
+}
+
+.vp-doc .el-select {
+  margin: 4px 0;
+}
+
+.vp-doc .el-form-item {
+  margin-bottom: 18px;
+}
+
+.vp-doc .el-card {
+  margin: 16px 0;
+}
+
+.vp-doc .el-table {
+  margin: 16px 0;
+}
+
+.vp-doc .el-dialog__wrapper {
+  z-index: 9999;
+}
+
+.vp-doc .el-message {
+  z-index: 9999;
+}
+
+.vp-doc .el-notification {
+  z-index: 9999;
+}
+
+/* 组件演示区域样式 */
+.demo-block {
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+  background-color: var(--vp-c-bg-soft);
+}
+
+.demo-block .demo-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--vp-c-text-1);
+}
+
+.demo-block .demo-description {
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.demo-block .demo-content {
+  margin-bottom: 16px;
+}
+
+.demo-block .demo-code {
+  border-top: 1px solid var(--vp-c-border);
+  padding-top: 16px;
+}
+
+/* 响应式布局优化 */
+@media (max-width: 768px) {
+  .demo-block {
+    padding: 16px;
+  }
+  
+  .vp-doc .el-button {
+    margin: 2px;
+  }
+}
+
+/* 暗色模式下的样式调整 */
+.dark .demo-block {
+  border-color: var(--vp-c-border);
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* Element Plus 主题色与 VitePress 主题色协调 */
+:root {
+  --el-color-primary: var(--vp-c-brand-1);
+  --el-color-primary-light-3: var(--vp-c-brand-2);
+  --el-color-primary-light-5: var(--vp-c-brand-3);
+  --el-color-primary-light-7: var(--vp-c-brand-soft);
+  --el-color-primary-light-8: var(--vp-c-brand-softer);
+  --el-color-primary-light-9: var(--vp-c-brand-softest);
+}
+
+/* 代码块中的 Element Plus 组件样式 */
+.vp-code-group .el-button,
+.vp-code-group .el-input,
+.vp-code-group .el-select {
+  font-size: 12px;
+}
+
+/* 确保组件在代码演示中的可见性 */
+.language-vue .el-button,
+.language-html .el-button {
+  display: inline-block;
+}
