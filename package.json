@@ -5,12 +5,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/study_element_plus.git"
+    "url": "https://github.com/edlo-cn/element-plus-study.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/study_element_plus/issues"
+    "url": "https://github.com/edlo-cn/element-plus-study/issues"
   },
-  "homepage": "https://github.com/yourusername/study_element_plus#readme",
+  "homepage": "https://edlo.cn",
   "directories": {
     "doc": "docs"
   },

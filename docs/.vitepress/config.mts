@@ -5,14 +5,14 @@ export default defineConfig({
   title: "Element Plus 学习宝典",
   description: "Element Plus 深度学习计划 - 系统掌握组件库开发",
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#409eff' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'zh-CN' }],
     ['meta', { property: 'og:title', content: 'Element Plus 学习宝典' }],
     ['meta', { property: 'og:site_name', content: 'Element Plus 学习宝典' }],
-    ['meta', { property: 'og:image', content: '/og-image.png' }],
-    ['meta', { property: 'og:url', content: 'https://element-plus-study.netlify.app/' }]
+    ['meta', { property: 'og:image', content: '/og-image.svg' }],
+    ['meta', { property: 'og:url', content: 'https://edlo.cn/' }]
   ],
   themeConfig: {
     logo: '/logo.svg',
@@ -333,7 +333,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/element-plus/element-plus/edit/dev/docs/:path',
+      pattern: 'https://github.com/edlo-cn/element-plus-study/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页面'
     },
 
@@ -362,7 +362,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2025 Element Plus Study Guide'
+      copyright: 'Copyright © 2025 edlo.cn - Element Plus Study Guide'
     }
   }
 })

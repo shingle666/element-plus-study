@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#409EFF"/>
+      <stop offset="100%" stop-color="#67C23A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="200" cy="150" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1000" cy="480" r="120" fill="rgba(255,255,255,0.1)"/>
+  <rect x="100" y="200" width="1000" height="230" rx="20" fill="rgba(255,255,255,0.95)"/>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#303133">Element Plus 学习宝典</text>
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" fill="#606266">全面掌握 Vue 3 组件库开发与应用</text>
+  <text x="600" y="390" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#909399">edlo.cn</text>
+</svg>
