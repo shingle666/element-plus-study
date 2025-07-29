@@ -156,6 +156,14 @@ import {
   Star
 } from '@element-plus/icons-vue'
 </script>
+
+<style scoped>
+.button-group-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+</style>
 ```
 
 ## 按钮尺寸
@@ -170,13 +178,11 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
       <el-button>默认按钮</el-button>
       <el-button size="small">小型按钮</el-button>
     </el-row>
-    
     <el-row style="margin-bottom: 20px;">
       <el-button size="large" round>大型按钮</el-button>
       <el-button round>默认按钮</el-button>
       <el-button size="small" round>小型按钮</el-button>
     </el-row>
-    
     <el-row>
       <el-button size="large" :icon="Search" circle />
       <el-button :icon="Search" circle />
@@ -193,13 +199,11 @@ Button 组件提供除了默认值以外的三种尺寸，可以在不同场景�
       <el-button>默认按钮</el-button>
       <el-button size="small">小型按钮</el-button>
     </el-row>
-    
     <el-row>
       <el-button size="large" round>大型按钮</el-button>
       <el-button round>默认按钮</el-button>
       <el-button size="small" round>小型按钮</el-button>
     </el-row>
-    
     <el-row>
       <el-button size="large" :icon="Search" circle />
       <el-button :icon="Search" circle />
@@ -237,7 +241,6 @@ import { Search } from '@element-plus/icons-vue'
       <el-button type="warning" disabled>警告按钮</el-button>
       <el-button type="danger" disabled>危险按钮</el-button>
     </el-row>
-    
     <el-row>
       <el-button plain disabled>朴素按钮</el-button>
       <el-button type="primary" plain disabled>主要按钮</el-button>
@@ -269,6 +272,27 @@ import { Search } from '@element-plus/icons-vue'
       <el-button type="warning" plain disabled>警告按钮</el-button>
       <el-button type="danger" plain disabled>危险按钮</el-button>
     </el-row>
+  </div>
+</template>
+```
+
+## 链接按钮
+
+链接按钮用于创建类似链接的按钮样式。
+
+<div class="demo-block">
+  <div class="demo-title">链接按钮</div>
+  <div class="demo-content">
+    <el-button type="primary" link>基础链接按钮</el-button>
+    <el-button type="primary" link disabled>禁用链接按钮</el-button>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="link-button-demo">
+    <el-button type="primary" link>基础链接按钮</el-button>
+    <el-button type="primary" link disabled>禁用链接按钮</el-button>
   </div>
 </template>
 ```
@@ -334,6 +358,73 @@ const handleClick = () => {
 </script>
 ```
 
+## 自定义颜色
+
+您可以自定义按钮的颜色，我们将自动计算按钮处于 hover 和 active 状态时的颜色。
+
+<div class="demo-block">
+  <div class="demo-title">自定义颜色</div>
+  <div class="demo-content">
+    <el-button color="#95d475">#95d475</el-button>
+    <el-button color="#95d475" plain>#95d475</el-button>
+    <el-button color="#95d475" round plain>圆角按钮</el-button>
+    <el-button color="#95d475" round>圆角按钮</el-button>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="custom-color-demo">
+    <el-button color="#95d475">#95d475</el-button>
+    <el-button color="#95d475" plain>#95d475</el-button>
+    <el-button color="#95d475" round plain>圆角按钮</el-button>
+    <el-button color="#95d475" round>圆角按钮</el-button>
+  </div>
+</template>
+```
+
+## 自定义元素标签
+
+您可以自定义元素标签，例如按钮、div、路由链接、nuxt链接。
+
+<div class="demo-block">
+  <div class="demo-title">自定义元素标签</div>
+  <div class="demo-content">
+    <el-button tag="div" role="button" tabindex="0">div</el-button>
+    <el-button tag="span" role="button" tabindex="0">span</el-button>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="custom-tag-demo">
+    <el-button tag="div" role="button" tabindex="0">div</el-button>
+    <el-button tag="span" role="button" tabindex="0">span</el-button>
+  </div>
+</template>
+```
+
+## 自动插入空格
+
+当按钮内容为两个中文字符时，可以自动在字符之间插入空格。
+
+<div class="demo-block">
+  <div class="demo-title">自动插入空格</div>
+  <div class="demo-content">
+    <el-button auto-insert-space>按钮</el-button>
+    <el-button :auto-insert-space="false">按钮</el-button>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="auto-space-demo">
+    <el-button auto-insert-space>按钮</el-button>
+    <el-button :auto-insert-space="false">按钮</el-button>
+  </div>
+</template>
+```
+
 ## 按钮组
 
 以按钮组的方式出现，常用于多项类似操作。
@@ -361,7 +452,7 @@ const handleClick = () => {
       <el-button type="primary" :icon="ArrowLeft">上一页</el-button>
       <el-button type="primary" :icon="ArrowRight">下一页</el-button>
     </el-button-group>
-    
+    <br><br>
     <el-button-group>
       <el-button type="primary" :icon="Edit" />
       <el-button type="primary" :icon="Share" />
@@ -402,29 +493,24 @@ import {
         <el-button type="success" :icon="Upload">导入</el-button>
         <el-button type="warning" :icon="Download">导出</el-button>
       </div>
-      
-      <!-- 次要操作 -->
       <div class="toolbar-section">
         <el-button :icon="Refresh" circle />
         <el-button :icon="Setting" circle />
         <el-button :icon="More" circle />
       </div>
     </div>
-    
-    <!-- 操作按钮组 -->
     <div class="action-groups">
       <el-button-group>
         <el-button type="primary" :icon="Edit">编辑</el-button>
         <el-button type="primary" :icon="Share">分享</el-button>
         <el-button type="primary" :icon="Delete">删除</el-button>
       </el-button-group>
-      
       <el-button-group>
-        <el-button :icon="ZoomIn" />
-        <el-button :icon="ZoomOut" />
-        <el-button :icon="FullScreen" />
+        <el-button :icon="ZoomIn"></el-button>
+        <el-button :icon="ZoomOut"></el-button>
+        <el-button :icon="FullScreen"></el-button>
       </el-button-group>
-    </div>
+  </div>
   </div>
 </div>
 
@@ -439,25 +525,22 @@ import {
         <span>运行中</span>
         <el-button size="small" type="success" text>查看</el-button>
       </div>
-      
       <div class="status-item">
         <div class="status-indicator warning"></div>
         <span>警告</span>
         <el-button size="small" type="warning" text>处理</el-button>
       </div>
-      
       <div class="status-item">
         <div class="status-indicator danger"></div>
         <span>错误</span>
         <el-button size="small" type="danger" text>修复</el-button>
       </div>
-      
       <div class="status-item">
         <div class="status-indicator info"></div>
         <span>停止</span>
         <el-button size="small" type="info" text>启动</el-button>
       </div>
-    </div>
+  </div>
   </div>
 </div>
 
@@ -468,11 +551,11 @@ import {
 | 属性名 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | size | 尺寸 | string | large / default / small | — |
-| type | 类型 | string | primary / success / warning / danger / info / text | — |
+| type | 类型 | string | primary / success / warning / danger / info | — |
 | plain | 是否朴素按钮 | boolean | — | false |
-| text | 是否文字按钮 | boolean | — | false |
-| bg | 是否显示文字按钮背景颜色 | boolean | — | false |
-| link | 是否链接按钮 | boolean | — | false |
+| text ^(2.2.0) | 是否文字按钮 | boolean | — | false |
+| bg ^(2.2.0) | 是否显示文字按钮背景颜色 | boolean | — | false |
+| link ^(2.2.1) | 是否链接按钮 | boolean | — | false |
 | round | 是否圆角按钮 | boolean | — | false |
 | circle | 是否圆形按钮 | boolean | — | false |
 | loading | 是否加载中状态 | boolean | — | false |
@@ -484,6 +567,7 @@ import {
 | auto-insert-space | 自动在两个中文字符之间插入空格 | boolean | — | false |
 | color | 自定义按钮颜色, 并自动计算 hover 和 active 触发后的颜色 | string | — | — |
 | dark | dark 模式, 意味着自动设置 color 为 dark 模式的颜色 | boolean | — | false |
+| tag ^(2.3.4) | 自定义元素标签 | string / Component | — | button |
 
 ### Button Events
 
