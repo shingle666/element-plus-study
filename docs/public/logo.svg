@@ -1,0 +1,62 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形渐变 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#67C23A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="elementGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E6A23C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F56C6C;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- 主背景圆 -->
+  <circle cx="60" cy="60" r="55" fill="url(#bgGradient)" filter="url(#shadow)"/>
+  
+  <!-- Element Plus 标志性的 E 字母设计 -->
+  <g transform="translate(25, 25)">
+    <!-- E 字母主体 -->
+    <rect x="15" y="15" width="8" height="40" fill="white" rx="2"/>
+    <rect x="15" y="15" width="25" height="8" fill="white" rx="2"/>
+    <rect x="15" y="31" width="20" height="6" fill="white" rx="1"/>
+    <rect x="15" y="47" width="25" height="8" fill="white" rx="2"/>
+    
+    <!-- Plus 符号 -->
+    <rect x="45" y="28" width="6" height="14" fill="url(#elementGradient)" rx="1"/>
+    <rect x="41" y="32" width="14" height="6" fill="url(#elementGradient)" rx="1"/>
+  </g>
+  
+  <!-- 学习元素：书本图标 -->
+  <g transform="translate(75, 20)">
+    <rect x="0" y="8" width="16" height="12" fill="white" rx="2" opacity="0.9"/>
+    <rect x="2" y="10" width="12" height="1" fill="#409EFF" opacity="0.7"/>
+    <rect x="2" y="12" width="8" height="1" fill="#409EFF" opacity="0.7"/>
+    <rect x="2" y="14" width="10" height="1" fill="#409EFF" opacity="0.7"/>
+    <rect x="2" y="16" width="6" height="1" fill="#409EFF" opacity="0.7"/>
+  </g>
+  
+  <!-- 代码元素：代码符号 -->
+  <g transform="translate(20, 80)">
+    <text x="0" y="0" font-family="monospace" font-size="14" fill="white" opacity="0.8">&lt;/&gt;</text>
+  </g>
+  
+  <!-- 进步箭头 -->
+  <g transform="translate(80, 85)">
+    <path d="M0,0 L8,4 L0,8 L2,4 Z" fill="white" opacity="0.8"/>
+    <path d="M6,0 L14,4 L6,8 L8,4 Z" fill="white" opacity="0.6"/>
+  </g>
+  
+  <!-- 装饰性圆点 -->
+  <circle cx="25" cy="35" r="2" fill="white" opacity="0.6"/>
+  <circle cx="95" cy="45" r="1.5" fill="white" opacity="0.5"/>
+  <circle cx="30" cy="90" r="1" fill="white" opacity="0.4"/>
+  <circle cx="85" cy="25" r="1" fill="white" opacity="0.4"/>
+  
+  <!-- 中心发光效果 -->
+  <circle cx="60" cy="60" r="20" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+  <circle cx="60" cy="60" r="15" fill="none" stroke="white" stroke-width="0.5" opacity="0.2"/>
+</svg>

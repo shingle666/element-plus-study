@@ -3,39 +3,62 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Element Plus 学习宝典",
-  description: "Element Plus 深度学习计划 - 100天系统掌握组件库开发",
+  description: "Element Plus 深度学习计划 - 系统掌握组件库开发",
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'theme-color', content: '#409eff' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'zh-CN' }],
+    ['meta', { property: 'og:title', content: 'Element Plus 学习宝典' }],
+    ['meta', { property: 'og:site_name', content: 'Element Plus 学习宝典' }],
+    ['meta', { property: 'og:image', content: '/og-image.png' }],
+    ['meta', { property: 'og:url', content: 'https://element-plus-study.netlify.app/' }]
+  ],
   themeConfig: {
+    logo: '/logo.svg',
+    siteTitle: 'Element Plus 学习宝典',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: '首页', link: '/' },
-      { text: '学习宝典', link: '/Element%20Plus%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97' },
+      { text: '🏠 首页', link: '/' },
+      { text: '📚 学习宝典', link: '/Element Plus学习宝典' },
       {
-        text: '学习阶段',
+        text: '📋 基础学习',
         items: [
-          { text: '基础概念', link: '/基础概念/01.设计原则与基础概念' },
-          { text: '基础组件', link: '/基础组件/01.按钮边框色彩' },
-          { text: '表单组件', link: '/表单组件/01.基础输入组件' },
-          { text: '数据展示', link: '/数据展示组件/01.基础数据展示' },
-          { text: '导航组件', link: '/导航组件/01.菜单面包屑步骤条' },
-          { text: '反馈组件', link: '/反馈组件/01.消息反馈组件' },
-          { text: '其他组件', link: '/其他组件/01.布局与容器进阶' }
+          { text: '🎯 基础概念', link: '/基础概念/01.设计原则与基础概念' },
+          { text: '🧩 基础组件', link: '/基础组件/01.按钮边框色彩' },
+          { text: '📝 表单组件', link: '/表单组件/01.基础输入组件' },
+          { text: '📊 数据展示', link: '/数据展示组件/01.基础数据展示' },
+          { text: '🧭 导航组件', link: '/导航组件/01.菜单面包屑步骤条' },
+          { text: '💬 反馈组件', link: '/反馈组件/01.消息反馈组件' },
+          { text: '🔧 其他组件', link: '/其他组件/01.布局与容器进阶' }
         ]
       },
       {
-        text: '高级主题',
+        text: '🏗️ 架构设计',
         items: [
-          { text: '架构设计', link: '/架构设计/01.整体架构与设计理念' },
-          { text: '高级特性', link: '/高级特性/01.综合实践' },
-          { text: '性能优化', link: '/性能优化/01.组件性能分析' },
-          { text: '国际化', link: '/国际化与无障碍/01.国际化系统详解' }
+          { text: '🏛️ 架构设计', link: '/架构设计/01.整体架构与设计理念' },
+          { text: '⚡ 高级特性', link: '/高级特性/01.综合实践' },
+          { text: '🎨 高级主题', link: '/高级主题/01.组件扩展与自定义' },
+          { text: '🚀 性能优化', link: '/性能优化/01.组件性能分析' }
         ]
       },
       {
-        text: '实践项目',
+        text: '🌐 企业级应用',
         items: [
-          { text: '项目实践', link: '/项目实践/01.综合项目实战一' },
-          { text: 'SSR渲染', link: '/SSR服务端渲染/01.基础概念与环境搭建' },
-          { text: 'Vue生态', link: '/Vue生态集成/01.与VueRouter深度集成' }
+          { text: '🖥️ SSR渲染', link: '/SSR服务端渲染/01.基础概念与环境搭建' },
+          { text: '🌍 国际化无障碍', link: '/国际化与无障碍/01.国际化系统详解' },
+          { text: '🔗 Vue生态', link: '/Vue生态集成/01.与VueRouter深度集成' },
+          { text: '⚙️ 工程化构建', link: '/工程化与构建/01.构建系统深入ViteTypeScript' },
+          { text: '📱 跨平台开发', link: '/跨平台开发/01.跨平台开发实践' }
+        ]
+      },
+      {
+        text: '🤝 贡献与实践',
+        items: [
+          { text: '💼 项目实践', link: '/项目实践/01.综合项目实战一' },
+          { text: '🔓 开源贡献', link: '/开源贡献/01.开发流程与代码规范' },
+          { text: '👥 社区贡献', link: '/社区贡献/01.社区贡献与开源实践' },
+          { text: '📈 总结规划', link: '/总结与规划/01.学习总结与进阶规划' }
         ]
       }
     ],
@@ -301,16 +324,45 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/element-plus/element-plus' }
+      { icon: 'github', link: 'https://github.com/element-plus/element-plus' },
+      { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
     ],
 
     search: {
       provider: 'local'
     },
 
+    editLink: {
+      pattern: 'https://github.com/element-plus/element-plus/edit/dev/docs/:path',
+      text: '在 GitHub 上编辑此页面'
+    },
+
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium'
+      }
+    },
+
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+
+    outline: {
+      label: '页面导航'
+    },
+
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024 Element Plus Study Guide'
+      copyright: 'Copyright © 2025 Element Plus Study Guide'
     }
   }
 })
