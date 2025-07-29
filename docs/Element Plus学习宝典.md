@@ -152,10 +152,18 @@ element-plus-study/
 - [环境搭建与快速开始](./基础概念/02.环境搭建与快速开始.md)
 
 #### 基础组件
-- [按钮边框色彩](./基础组件/01.按钮边框色彩.md)
-- [布局与样式](./基础组件/02.布局与样式.md)
-- [按钮与文本](./基础组件/03.按钮与文本.md)
-- [图标与滚动](./基础组件/04.图标与滚动.md)
+- [Button 按钮](./基础组件/Button 按钮.md)
+- [Border 边框](./基础组件/Border 边框.md)
+- [Color 色彩](./基础组件/Color 色彩.md)
+- [Container 布局容器](./基础组件/Container 布局容器.md)
+- [Icon 图标](./基础组件/Icon 图标.md)
+- [Layout 布局](./基础组件/Layout 布局.md)
+- [Link 链接](./基础组件/Link 链接.md)
+- [Scrollbar 滚动条](./基础组件/Scrollbar 滚动条.md)
+- [Space 间距](./基础组件/Space 间距.md)
+- [Splitter 分隔面板](./基础组件/Splitter 分隔面板.md)
+- [Text 文本](./基础组件/Text 文本.md)
+- [Typography 排版](./基础组件/Typography 排版.md)
 
 #### 表单组件
 - [基础输入组件](./表单组件/01.基础输入组件.md)
