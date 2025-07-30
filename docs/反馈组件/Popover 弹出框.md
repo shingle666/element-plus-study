@@ -17,6 +17,28 @@
 
 Popover 是一个轻量级的弹出框组件，基于 ElTooltip 开发。它可以在用户悬停、点击或聚焦元素时显示额外的信息或操作。Popover 支持多种触发方式和丰富的自定义选项，适用于显示详细信息、操作菜单或复杂内容。
 
+### 主要特性
+
+- **多种触发方式**：支持 hover、click、focus、contextmenu 等触发方式
+- **灵活定位**：提供 12 种不同的弹出位置选择
+- **丰富内容支持**：支持文本、HTML、组件等多种内容类型
+- **虚拟触发**：支持虚拟元素触发，实现更灵活的交互
+- **受控模式**：支持手动控制显示和隐藏状态
+- **高度可定制**：支持自定义样式、动画、箭头等
+- **事件丰富**：提供完整的生命周期事件监听
+- **性能优化**：支持懒加载和自动销毁机制
+
+### 适用场景
+
+- **信息提示**：显示详细的帮助信息或说明文档
+- **操作菜单**：展示相关的操作选项和快捷功能
+- **内容预览**：预览图片、文档或其他媒体内容
+- **表单辅助**：提供表单字段的详细说明和示例
+- **数据展示**：展示表格、图表等复杂数据内容
+- **交互确认**：显示确认对话框或操作提示
+- **导航辅助**：提供页面导航和功能引导
+- **状态说明**：解释当前状态和可执行的操作
+
 ## 基础用法
 
 ### 基础用法
@@ -232,6 +254,558 @@ const gridData = [
 </template>
 ```
 
+## 实际应用示例
+
+### 用户信息卡片
+
+```vue
+<template>
+  <div class="user-info-demo">
+    <h3>用户信息卡片</h3>
+    
+    <div class="user-list">
+      <div 
+        v-for="user in users" 
+        :key="user.id" 
+        class="user-item"
+      >
+        <el-popover
+          placement="right"
+          :width="320"
+          trigger="hover"
+          :show-after="500"
+          :hide-after="200"
+        >
+          <template #reference>
+            <div class="user-avatar-wrapper">
+              <el-avatar :src="user.avatar" :size="40" />
+              <span class="user-name">{{ user.name }}</span>
+            </div>
+          </template>
+          
+          <template #default>
+            <div class="user-card">
+              <div class="user-header">
+                <el-avatar :src="user.avatar" :size="60" />
+                <div class="user-basic">
+                  <h4>{{ user.name }}</h4>
+                  <p class="user-title">{{ user.title }}</p>
+                  <el-tag :type="user.status === 'online' ? 'success' : 'info'" size="small">
+                    {{ user.status === 'online' ? '在线' : '离线' }}
+                  </el-tag>
+                </div>
+              </div>
+              
+              <div class="user-details">
+                <div class="detail-item">
+                  <el-icon><Message /></el-icon>
+                  <span>{{ user.email }}</span>
+                </div>
+                <div class="detail-item">
+                  <el-icon><Phone /></el-icon>
+                  <span>{{ user.phone }}</span>
+                </div>
+                <div class="detail-item">
+                  <el-icon><Location /></el-icon>
+                  <span>{{ user.department }}</span>
+                </div>
+              </div>
+              
+              <div class="user-stats">
+                <div class="stat-item">
+                  <span class="stat-number">{{ user.projects }}</span>
+                  <span class="stat-label">项目</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">{{ user.tasks }}</span>
+                  <span class="stat-label">任务</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">{{ user.score }}</span>
+                  <span class="stat-label">评分</span>
+                </div>
+              </div>
+              
+              <div class="user-actions">
+                <el-button type="primary" size="small" @click="sendMessage(user)">
+                  <el-icon><ChatDotRound /></el-icon>
+                  发消息
+                </el-button>
+                <el-button size="small" @click="viewProfile(user)">
+                  <el-icon><User /></el-icon>
+                  查看详情
+                </el-button>
+              </div>
+            </div>
+          </template>
+        </el-popover>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { 
+  Message, 
+  Phone, 
+  Location, 
+  ChatDotRound, 
+  User 
+} from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
+
+const users = ref([
+  {
+    id: 1,
+    name: '张三',
+    title: '前端工程师',
+    email: 'zhangsan@company.com',
+    phone: '138-0000-0001',
+    department: '技术部',
+    status: 'online',
+    projects: 12,
+    tasks: 28,
+    score: 4.8,
+    avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+  },
+  {
+    id: 2,
+    name: '李四',
+    title: '产品经理',
+    email: 'lisi@company.com',
+    phone: '138-0000-0002',
+    department: '产品部',
+    status: 'offline',
+    projects: 8,
+    tasks: 15,
+    score: 4.6,
+    avatar: 'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
+  },
+  {
+    id: 3,
+    name: '王五',
+    title: 'UI设计师',
+    email: 'wangwu@company.com',
+    phone: '138-0000-0003',
+    department: '设计部',
+    status: 'online',
+    projects: 15,
+    tasks: 32,
+    score: 4.9,
+    avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+  }
+])
+
+const sendMessage = (user) => {
+  ElMessage.success(`向 ${user.name} 发送消息`)
+}
+
+const viewProfile = (user) => {
+  ElMessage.info(`查看 ${user.name} 的详细资料`)
+}
+</script>
+
+<style scoped>
+.user-info-demo {
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-item {
+  cursor: pointer;
+}
+
+.user-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.user-avatar-wrapper:hover {
+  border-color: #409eff;
+  background-color: #f5f7fa;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #303133;
+}
+
+.user-card {
+  padding: 16px;
+}
+
+.user-header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.user-basic h4 {
+  margin: 0 0 4px 0;
+  color: #303133;
+}
+
+.user-title {
+  margin: 0 0 8px 0;
+  color: #606266;
+  font-size: 14px;
+}
+
+.user-details {
+  margin-bottom: 16px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #606266;
+  font-size: 14px;
+}
+
+.detail-item .el-icon {
+  color: #909399;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f5f7fa;
+  border-radius: 6px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #409eff;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #909399;
+}
+
+.user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.user-actions .el-button {
+  flex: 1;
+}
+</style>
+```
+
+### 操作菜单系统
+
+```vue
+<template>
+  <div class="action-menu-demo">
+    <h3>操作菜单系统</h3>
+    
+    <div class="file-list">
+      <div 
+        v-for="file in files" 
+        :key="file.id" 
+        class="file-item"
+      >
+        <div class="file-info">
+          <el-icon class="file-icon" :class="getFileIconClass(file.type)">
+            <component :is="getFileIcon(file.type)" />
+          </el-icon>
+          <div class="file-details">
+            <span class="file-name">{{ file.name }}</span>
+            <span class="file-meta">{{ file.size }} • {{ file.modifiedAt }}</span>
+          </div>
+        </div>
+        
+        <el-popover
+          placement="bottom-end"
+          :width="200"
+          trigger="click"
+          :hide-after="0"
+        >
+          <template #reference>
+            <el-button 
+              type="text" 
+              :icon="MoreFilled" 
+              class="action-button"
+            />
+          </template>
+          
+          <template #default>
+            <div class="action-menu">
+              <div class="menu-item" @click="previewFile(file)">
+                <el-icon><View /></el-icon>
+                <span>预览</span>
+              </div>
+              <div class="menu-item" @click="downloadFile(file)">
+                <el-icon><Download /></el-icon>
+                <span>下载</span>
+              </div>
+              <div class="menu-item" @click="shareFile(file)">
+                <el-icon><Share /></el-icon>
+                <span>分享</span>
+              </div>
+              <div class="menu-divider"></div>
+              <div class="menu-item" @click="renameFile(file)">
+                <el-icon><Edit /></el-icon>
+                <span>重命名</span>
+              </div>
+              <div class="menu-item" @click="moveFile(file)">
+                <el-icon><FolderOpened /></el-icon>
+                <span>移动到</span>
+              </div>
+              <div class="menu-item" @click="copyFile(file)">
+                <el-icon><CopyDocument /></el-icon>
+                <span>复制</span>
+              </div>
+              <div class="menu-divider"></div>
+              <div class="menu-item danger" @click="deleteFile(file)">
+                <el-icon><Delete /></el-icon>
+                <span>删除</span>
+              </div>
+            </div>
+          </template>
+        </el-popover>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import {
+  MoreFilled,
+  View,
+  Download,
+  Share,
+  Edit,
+  FolderOpened,
+  CopyDocument,
+  Delete,
+  Document,
+  Picture,
+  VideoPlay,
+  Folder
+} from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+const files = ref([
+  {
+    id: 1,
+    name: '项目文档.docx',
+    type: 'document',
+    size: '2.5 MB',
+    modifiedAt: '2024-01-15'
+  },
+  {
+    id: 2,
+    name: '设计稿.png',
+    type: 'image',
+    size: '1.8 MB',
+    modifiedAt: '2024-01-14'
+  },
+  {
+    id: 3,
+    name: '演示视频.mp4',
+    type: 'video',
+    size: '15.2 MB',
+    modifiedAt: '2024-01-13'
+  },
+  {
+    id: 4,
+    name: '资源文件夹',
+    type: 'folder',
+    size: '—',
+    modifiedAt: '2024-01-12'
+  }
+])
+
+const getFileIcon = (type) => {
+  const iconMap = {
+    document: Document,
+    image: Picture,
+    video: VideoPlay,
+    folder: Folder
+  }
+  return iconMap[type] || Document
+}
+
+const getFileIconClass = (type) => {
+  const classMap = {
+    document: 'text-blue',
+    image: 'text-green',
+    video: 'text-purple',
+    folder: 'text-orange'
+  }
+  return classMap[type] || 'text-gray'
+}
+
+const previewFile = (file) => {
+  ElMessage.info(`预览文件：${file.name}`)
+}
+
+const downloadFile = (file) => {
+  ElMessage.success(`下载文件：${file.name}`)
+}
+
+const shareFile = (file) => {
+  ElMessage.info(`分享文件：${file.name}`)
+}
+
+const renameFile = (file) => {
+  ElMessage.info(`重命名文件：${file.name}`)
+}
+
+const moveFile = (file) => {
+  ElMessage.info(`移动文件：${file.name}`)
+}
+
+const copyFile = (file) => {
+  ElMessage.success(`复制文件：${file.name}`)
+}
+
+const deleteFile = (file) => {
+  ElMessageBox.confirm(
+    `确定要删除文件 "${file.name}" 吗？`,
+    '删除确认',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }
+  ).then(() => {
+    ElMessage.success(`已删除文件：${file.name}`)
+  }).catch(() => {
+    ElMessage.info('已取消删除')
+  })
+}
+</script>
+
+<style scoped>
+.action-menu-demo {
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.file-item:hover {
+  border-color: #c6e2ff;
+  background-color: #f5f7fa;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-icon {
+  font-size: 24px;
+}
+
+.text-blue { color: #409eff; }
+.text-green { color: #67c23a; }
+.text-purple { color: #9c27b0; }
+.text-orange { color: #e6a23c; }
+.text-gray { color: #909399; }
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #303133;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: #909399;
+}
+
+.action-button {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.action-menu {
+  padding: 8px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  margin: 0 8px;
+}
+
+.menu-item:hover {
+  background-color: #f5f7fa;
+}
+
+.menu-item.danger {
+  color: #f56c6c;
+}
+
+.menu-item.danger:hover {
+  background-color: #fef0f0;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: #e4e7ed;
+  margin: 8px 0;
+}
+</style>
+```
+
 ## API
 
 ### Attributes
@@ -274,6 +848,93 @@ const gridData = [
 | before-leave | 隐藏动画播放前触发 | Function |
 | after-leave | 隐藏动画播放完毕后触发 | Function |
 
+## 常见问题
+
+### 1. Popover 不显示或位置不正确
+
+**问题描述**：Popover 组件不显示或显示位置不正确。
+
+**解决方案**：
+- 检查 `placement` 属性是否设置正确
+- 确保触发元素有足够的空间显示 Popover
+- 检查 CSS 样式是否影响了定位
+- 使用 `offset` 属性调整偏移量
+
+```vue
+<!-- 正确的用法 -->
+<el-popover
+  placement="top"
+  :offset="10"
+  trigger="hover"
+>
+  <template #reference>
+    <el-button>触发按钮</el-button>
+  </template>
+  <div>弹出内容</div>
+</el-popover>
+```
+
+### 2. 动态内容更新问题
+
+**问题描述**：Popover 中的动态内容更新后位置不正确。
+
+**解决方案**：
+- 使用 `v-if` 而不是 `v-show` 来控制显示
+- 在内容更新后手动触发重新定位
+- 设置合适的 `width` 属性
+
+```vue
+<template>
+  <el-popover
+    ref="popoverRef"
+    :width="300"
+    trigger="click"
+  >
+    <template #reference>
+      <el-button @click="updateContent">更新内容</el-button>
+    </template>
+    <div v-if="showContent">
+      {{ dynamicContent }}
+    </div>
+  </el-popover>
+</template>
+
+<script setup>
+import { ref, nextTick } from 'vue'
+
+const popoverRef = ref()
+const showContent = ref(true)
+const dynamicContent = ref('初始内容')
+
+const updateContent = async () => {
+  dynamicContent.value = '更新后的内容'
+  await nextTick()
+  // 手动触发重新定位
+  popoverRef.value?.updatePopper?.()
+}
+</script>
+```
+
+### 3. 性能优化
+
+**问题描述**：大量 Popover 组件影响页面性能。
+
+**解决方案**：
+- 使用 `lazy` 属性延迟渲染
+- 合理设置 `show-after` 和 `hide-after`
+- 避免在 Popover 中放置复杂组件
+
+```vue
+<el-popover
+  trigger="hover"
+  :show-after="300"
+  :hide-after="100"
+  lazy
+>
+  <!-- 内容 -->
+</el-popover>
+```
+
 ### Slots
 
 | 插槽名 | 说明 |
@@ -289,36 +950,152 @@ const gridData = [
 
 ## 最佳实践
 
-1. **选择合适的触发方式**：
-   - `hover`：适用于显示提示信息
-   - `click`：适用于显示操作菜单或复杂内容
-   - `focus`：适用于表单元素的帮助信息
-   - `contextmenu`：适用于右键菜单
+### 1. 合理选择触发方式
 
-2. **合理设置位置**：根据页面布局选择合适的 `placement`，避免弹出框超出视窗
+- **hover**：适用于信息提示、预览等场景
+- **click**：适用于操作菜单、表单等需要用户主动触发的场景
+- **focus**：适用于表单输入提示
+- **manual**：适用于需要程序控制的复杂场景
 
-3. **控制内容大小**：设置合适的 `width`，避免内容过长影响用户体验
+### 2. 设置合适的显示位置
 
-4. **使用虚拟触发**：当触发元素和内容元素分离时，使用虚拟触发功能
+```vue
+<!-- 根据页面布局选择合适的位置 -->
+<el-popover placement="top"><!-- 上方有足够空间时 -->
+<el-popover placement="bottom"><!-- 下方有足够空间时 -->
+<el-popover placement="right"><!-- 右侧有足够空间时 -->
+<el-popover placement="left"><!-- 左侧有足够空间时 -->
+```
 
-5. **性能优化**：对于不常用的 Popover，可以设置 `persistent="false"` 来自动销毁
+### 3. 控制内容长度
 
-## 常见问题
+```vue
+<!-- 设置合适的宽度 -->
+<el-popover :width="300">
+  <div class="popover-content">
+    <!-- 内容不宜过长，影响用户体验 -->
+  </div>
+</el-popover>
 
-1. **Q: Popover 不显示？**
-   A: 检查 `trigger` 设置是否正确，确保触发元素能够接收相应的事件
+<style>
+.popover-content {
+  max-height: 200px;
+  overflow-y: auto;
+}
+</style>
+```
 
-2. **Q: 如何手动控制 Popover 的显示隐藏？**
-   A: 使用 `v-model:visible` 绑定一个响应式变量来控制
+### 4. 提供清晰的视觉反馈
 
-3. **Q: Popover 位置不正确？**
-   A: 检查 `placement` 设置，考虑使用 `offset` 进行微调
+```vue
+<el-popover trigger="hover">
+  <template #reference>
+    <el-button class="info-button">
+      信息
+      <el-icon><InfoFilled /></el-icon>
+    </el-button>
+  </template>
+  <div>详细信息内容</div>
+</el-popover>
 
-4. **Q: 在 SSR 环境下使用注意事项？**
-   A: 需要将组件包裹在 `<client-only></client-only>` 中
+<style>
+.info-button {
+  cursor: help;
+}
+</style>
+```
 
-5. **Q: v-popover 指令被废弃了吗？**
-   A: 是的，建议使用 `virtual-ref` 作为替代方案
+### 5. 考虑无障碍访问
+
+```vue
+<el-popover
+  trigger="hover"
+  :show-after="500"
+  :hide-after="200"
+>
+  <template #reference>
+    <el-button 
+      aria-describedby="popover-content"
+      aria-haspopup="true"
+    >
+      查看详情
+    </el-button>
+  </template>
+  <div id="popover-content" role="tooltip">
+    详细信息内容
+  </div>
+</el-popover>
+```
+
+### 6. 避免嵌套使用
+
+```vue
+<!-- 避免这样做 -->
+<el-popover>
+  <el-popover>
+    <!-- 嵌套的 Popover -->
+  </el-popover>
+</el-popover>
+
+<!-- 推荐的做法 -->
+<el-popover trigger="click">
+  <div class="menu">
+    <div class="menu-item" @click="showSubMenu = !showSubMenu">
+      子菜单
+    </div>
+    <div v-if="showSubMenu" class="sub-menu">
+      <!-- 子菜单内容 -->
+    </div>
+  </div>
+</el-popover>
+```
+
+## 总结
+
+Popover 弹出框组件是 Element Plus 中一个功能强大且灵活的组件，具有以下核心特点：
+
+### 核心特点
+
+1. **多种触发方式**：支持 hover、click、focus、manual 四种触发方式
+2. **灵活定位**：提供 12 个方向的定位选项，满足各种布局需求
+3. **丰富内容支持**：支持文本、HTML、组件等多种内容形式
+4. **虚拟触发**：支持虚拟元素触发，提供更大的灵活性
+5. **受控模式**：支持手动控制显示和隐藏
+6. **高度可定制**：提供丰富的配置选项和插槽
+7. **事件丰富**：提供完整的生命周期事件
+8. **性能优化**：支持延迟渲染和智能定位
+
+### 适用场景
+
+- **信息提示**：显示额外的说明信息
+- **操作菜单**：提供快捷操作选项
+- **内容预览**：预览详细内容
+- **表单辅助**：提供输入提示和验证信息
+- **数据展示**：展示相关数据和统计信息
+- **交互确认**：确认用户操作
+- **导航辅助**：提供导航和引导信息
+- **状态说明**：解释当前状态和含义
+
+### 最佳实践建议
+
+1. **合理选择触发方式**：根据使用场景选择合适的触发方式
+2. **设置合适的显示位置**：考虑页面布局和用户习惯
+3. **控制内容长度**：避免内容过长影响用户体验
+4. **提供清晰的视觉反馈**：让用户明确知道可以触发 Popover
+5. **考虑无障碍访问**：添加适当的 ARIA 属性
+6. **避免嵌套使用**：保持简单的层级结构
+7. **性能优化**：合理使用延迟渲染和防抖
+8. **保持一致性**：在同一应用中保持 Popover 的使用风格一致
+
+通过合理使用 Popover 组件，可以大大提升用户界面的交互体验和信息展示效果。
+
+## 参考资料
+
+- [Element Plus Popover 官方文档](https://element-plus.org/zh-CN/component/popover.html)
+- [Vue 3 组合式 API](https://cn.vuejs.org/guide/extras/composition-api-faq.html)
+- [Web 无障碍访问指南](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Popper.js 定位引擎](https://popper.js.org/)
+- [Element Plus 设计规范](https://element-plus.org/zh-CN/guide/design.html)
 
 ## 实践项目
 

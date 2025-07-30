@@ -15,9 +15,29 @@
 
 ## 概述
 
-有些时候, Dialog 组件并不满足我们的需求, 比如你的表单很长, 亦或是你需要临时展示一些文档, Drawer 拥有和 Dialog 几乎相同的 API, 在 UI 上带来不一样的体验。<mcreference link="https://element-plus.org/zh-CN/component/drawer.html" index="2">2</mcreference>
+Drawer 抽屉是一个从页面边缘滑出的面板组件，为用户提供额外的操作空间和内容展示区域。它拥有和 Dialog 几乎相同的 API，但在 UI 体验上更适合展示表单、文档等需要更多空间的内容。
 
-Drawer 的内容是懒渲染的，即在第一次被打开之前，传入的默认 slot 不会被渲染到 DOM 上。<mcreference link="https://element-plus.org/zh-CN/component/drawer.html" index="2">2</mcreference>
+### 主要特性
+
+- **多方向支持**：支持从左、右、上、下四个方向滑出
+- **懒渲染机制**：内容在首次打开前不会渲染，提升性能
+- **灵活尺寸**：支持百分比和像素值设置抽屉大小
+- **嵌套支持**：支持多层抽屉嵌套使用
+- **丰富插槽**：提供头部、内容、底部等插槽自定义
+- **事件完整**：提供完整的打开、关闭事件回调
+- **无障碍访问**：支持键盘导航和屏幕阅读器
+- **响应式设计**：适配不同屏幕尺寸和设备
+
+### 适用场景
+
+- **表单操作**：长表单、复杂表单的填写和编辑
+- **详情展示**：商品详情、用户信息等详细内容查看
+- **文档预览**：PDF、图片等文档的预览和查看
+- **设置面板**：应用设置、用户偏好等配置界面
+- **导航菜单**：移动端侧边导航、快捷操作菜单
+- **内容编辑**：富文本编辑、代码编辑等需要大空间的操作
+- **数据筛选**：复杂的筛选条件设置和数据过滤
+- **工作流程**：多步骤操作、向导式流程引导
 
 ## 基础用法
 
@@ -184,6 +204,320 @@ const handleClose = (done: () => void) => {
     })
 }
 </script>
+```
+
+## 实际应用示例
+
+### 用户设置面板
+
+一个完整的用户设置抽屉，包含多个设置选项：
+
+```vue
+<template>
+  <div class="settings-demo">
+    <el-button type="primary" @click="settingsDrawer = true">
+      <el-icon><Setting /></el-icon>
+      打开设置
+    </el-button>
+
+    <el-drawer
+      v-model="settingsDrawer"
+      title="用户设置"
+      direction="rtl"
+      size="400px"
+      :before-close="handleSettingsClose"
+    >
+      <template #header="{ close }">
+        <div class="settings-header">
+          <h3>个人设置</h3>
+          <el-button type="text" @click="close">
+            <el-icon><Close /></el-icon>
+          </el-button>
+        </div>
+      </template>
+
+      <div class="settings-content">
+        <el-form :model="userSettings" label-width="100px">
+          <el-form-item label="用户名">
+            <el-input v-model="userSettings.username" />
+          </el-form-item>
+          
+          <el-form-item label="邮箱">
+            <el-input v-model="userSettings.email" type="email" />
+          </el-form-item>
+          
+          <el-form-item label="主题">
+            <el-select v-model="userSettings.theme" placeholder="选择主题">
+              <el-option label="浅色" value="light" />
+              <el-option label="深色" value="dark" />
+              <el-option label="自动" value="auto" />
+            </el-select>
+          </el-form-item>
+          
+          <el-form-item label="语言">
+            <el-select v-model="userSettings.language" placeholder="选择语言">
+              <el-option label="中文" value="zh" />
+              <el-option label="English" value="en" />
+            </el-select>
+          </el-form-item>
+          
+          <el-form-item label="通知">
+            <el-switch v-model="userSettings.notifications" />
+          </el-form-item>
+        </el-form>
+      </div>
+
+      <template #footer>
+        <div class="settings-footer">
+          <el-button @click="settingsDrawer = false">取消</el-button>
+          <el-button type="primary" @click="saveSettings">保存设置</el-button>
+        </div>
+      </template>
+    </el-drawer>
+  </div>
+</template>
+
+<script setup>
+import { ref, reactive } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { Setting, Close } from '@element-plus/icons-vue'
+
+const settingsDrawer = ref(false)
+
+const userSettings = reactive({
+  username: 'admin',
+  email: 'admin@example.com',
+  theme: 'light',
+  language: 'zh',
+  notifications: true
+})
+
+const handleSettingsClose = (done) => {
+  ElMessageBox.confirm('设置尚未保存，确认关闭吗？')
+    .then(() => {
+      done()
+    })
+    .catch(() => {})
+}
+
+const saveSettings = () => {
+  // 模拟保存设置
+  setTimeout(() => {
+    ElMessage.success('设置保存成功')
+    settingsDrawer.value = false
+  }, 1000)
+}
+</script>
+
+<style scoped>
+.settings-demo {
+  padding: 20px;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.settings-content {
+  padding: 20px;
+}
+
+.settings-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px;
+  border-top: 1px solid #ebeef5;
+}
+</style>
+```
+
+### 商品详情抽屉
+
+展示商品详细信息的抽屉组件：
+
+```vue
+<template>
+  <div class="product-demo">
+    <el-row :gutter="20">
+      <el-col :span="6" v-for="product in products" :key="product.id">
+        <el-card class="product-card" @click="showProductDetail(product)">
+          <img :src="product.image" :alt="product.name" class="product-image" />
+          <div class="product-info">
+            <h4>{{ product.name }}</h4>
+            <p class="price">¥{{ product.price }}</p>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-drawer
+      v-model="productDrawer"
+      :title="selectedProduct?.name"
+      direction="rtl"
+      size="500px"
+    >
+      <div v-if="selectedProduct" class="product-detail">
+        <div class="product-images">
+          <el-carousel height="300px">
+            <el-carousel-item v-for="img in selectedProduct.images" :key="img">
+              <img :src="img" :alt="selectedProduct.name" class="detail-image" />
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        
+        <div class="product-info-detail">
+          <h2>{{ selectedProduct.name }}</h2>
+          <p class="price-detail">¥{{ selectedProduct.price }}</p>
+          <p class="description">{{ selectedProduct.description }}</p>
+          
+          <div class="product-specs">
+            <h4>商品规格</h4>
+            <el-descriptions :column="1" border>
+              <el-descriptions-item label="品牌">{{ selectedProduct.brand }}</el-descriptions-item>
+              <el-descriptions-item label="型号">{{ selectedProduct.model }}</el-descriptions-item>
+              <el-descriptions-item label="颜色">{{ selectedProduct.color }}</el-descriptions-item>
+              <el-descriptions-item label="尺寸">{{ selectedProduct.size }}</el-descriptions-item>
+            </el-descriptions>
+          </div>
+          
+          <div class="product-actions">
+            <el-button type="primary" size="large" @click="addToCart">
+              加入购物车
+            </el-button>
+            <el-button size="large" @click="buyNow">
+              立即购买
+            </el-button>
+          </div>
+        </div>
+      </div>
+    </el-drawer>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+
+const productDrawer = ref(false)
+const selectedProduct = ref(null)
+
+const products = [
+  {
+    id: 1,
+    name: '无线蓝牙耳机',
+    price: 299,
+    image: '/api/placeholder/200/200',
+    images: ['/api/placeholder/400/300', '/api/placeholder/400/300'],
+    description: '高品质无线蓝牙耳机，支持主动降噪，续航时间长达24小时。',
+    brand: 'TechBrand',
+    model: 'TB-WH100',
+    color: '黑色',
+    size: '标准'
+  },
+  {
+    id: 2,
+    name: '智能手表',
+    price: 1299,
+    image: '/api/placeholder/200/200',
+    images: ['/api/placeholder/400/300', '/api/placeholder/400/300'],
+    description: '多功能智能手表，支持健康监测、运动追踪等功能。',
+    brand: 'SmartTech',
+    model: 'ST-W200',
+    color: '银色',
+    size: '42mm'
+  }
+]
+
+const showProductDetail = (product) => {
+  selectedProduct.value = product
+  productDrawer.value = true
+}
+
+const addToCart = () => {
+  ElMessage.success('已加入购物车')
+}
+
+const buyNow = () => {
+  ElMessage.success('跳转到支付页面')
+  productDrawer.value = false
+}
+</script>
+
+<style scoped>
+.product-demo {
+  padding: 20px;
+}
+
+.product-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 10px 0;
+}
+
+.price {
+  color: #f56c6c;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.product-detail {
+  padding: 20px;
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info-detail {
+  margin-top: 20px;
+}
+
+.price-detail {
+  color: #f56c6c;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.description {
+  color: #666;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.product-specs {
+  margin: 20px 0;
+}
+
+.product-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+}
+
+.product-actions .el-button {
+  flex: 1;
+}
+</style>
 ```
 
 ## API
@@ -366,3 +700,41 @@ A: 通过设置 with-header 属性为 false 来控制是否显示标题。如果
 - [ ] 抽屉内容管理
 - [ ] 状态同步机制
 - [ ] 响应式适配
+
+## 总结
+
+Drawer 抽屉组件是一个功能强大且灵活的面板组件，具有以下核心特点：
+
+### 核心特点
+
+- **多方向支持**：支持从四个方向滑出，适应不同的界面布局需求
+- **懒渲染优化**：内容懒加载机制，提升应用性能
+- **灵活配置**：丰富的属性和插槽，支持高度自定义
+- **嵌套能力**：支持多层抽屉嵌套，处理复杂交互场景
+- **事件完整**：提供完整的生命周期事件，便于状态管理
+- **无障碍友好**：良好的键盘导航和屏幕阅读器支持
+
+### 适用场景
+
+- **表单操作**：适合长表单、复杂表单的展示和编辑
+- **详情查看**：商品详情、用户信息等内容的详细展示
+- **设置面板**：应用配置、用户偏好等设置界面
+- **导航菜单**：移动端侧边导航、快捷操作面板
+- **内容编辑**：需要大空间的编辑操作界面
+
+### 最佳实践建议
+
+1. **合理选择方向**：根据内容类型和页面布局选择合适的滑出方向
+2. **优化性能**：利用懒渲染特性，避免不必要的DOM渲染
+3. **响应式设计**：根据设备屏幕大小调整抽屉尺寸
+4. **用户体验**：提供清晰的操作反馈和关闭确认
+5. **无障碍访问**：确保键盘导航和屏幕阅读器的良好支持
+
+掌握 Drawer 组件的使用，能够为用户提供更好的空间利用和交互体验，特别适合需要额外操作空间的复杂界面场景。
+
+## 参考资料
+
+- [Element Plus Drawer 官方文档](https://element-plus.org/zh-CN/component/drawer.html)
+- [Vue 3 Teleport 组件](https://cn.vuejs.org/guide/built-ins/teleport.html)
+- [Web 可访问性抽屉设计](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- [移动端抽屉交互设计](https://material.io/components/navigation-drawer)

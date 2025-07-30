@@ -439,7 +439,7 @@ export default defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
 
     footer: {
-      message: 'Released under the MIT License.',
+      message: 'Element Plus 学习红宝书',
       copyright: 'Copyright © 2025 edlo.cn - Element Plus Study Guide'
     }
   }

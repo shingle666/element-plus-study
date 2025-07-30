@@ -14,11 +14,29 @@
 
 **预计学习时间：** 105分钟
 
-在保留当前页面状态的情况下，告知用户并承载相关操作。<mcreference link="https://element-plus.org/zh-CN/component/dialog" index="1">1</mcreference>
-
 ## 概述
 
-Dialog 弹出一个对话框，适合需要定制性更大的场景。Dialog 分为两个部分：body 和 footer，footer 需要具名为 footer 的 slot。Dialog 的内容是懒渲染的——在被第一次打开之前，传入的默认 slot 不会被立即渲染到 DOM 上。<mcreference link="https://element-plus.org/zh-CN/component/dialog" index="1">1</mcreference>
+Dialog 对话框是一个模态弹出层组件，用于在保留当前页面状态的情况下，向用户展示重要信息或承载相关操作。它提供了高度的定制性，适合复杂的交互场景。<mcreference link="https://element-plus.org/zh-CN/component/dialog" index="1">1</mcreference>
+
+### 主要特性
+
+- **模态交互**：阻止用户与背景页面交互，确保用户专注于对话框内容
+- **懒渲染**：内容在首次打开时才渲染，优化初始加载性能
+- **结构清晰**：分为头部、主体和底部三个区域，支持灵活定制
+- **尺寸控制**：支持自定义宽度、高度和位置设置
+- **关闭控制**：提供多种关闭方式和关闭前确认机制
+- **嵌套支持**：支持多层对话框嵌套，满足复杂业务需求
+- **无障碍访问**：内置键盘导航和屏幕阅读器支持
+- **动画效果**：提供平滑的显示和隐藏动画
+
+### 适用场景
+
+- **信息展示**：如用户详情、产品介绍、帮助说明等
+- **表单操作**：如新增、编辑、设置等需要用户输入的场景
+- **确认操作**：如删除确认、重要操作提醒等
+- **内容预览**：如图片查看、文档预览、视频播放等
+- **复杂交互**：如多步骤向导、嵌套选择、数据筛选等
+- **错误处理**：如错误详情展示、异常信息说明等
 
 ## 基础用法
 
@@ -345,6 +363,428 @@ const innerVisible = ref(false)
     <span>这是一个非模态对话框</span>
   </el-dialog>
 </template>
+```
+
+## 实际应用示例
+
+### 用户信息编辑对话框
+
+这个示例展示了如何创建一个用户信息编辑对话框，包含表单验证、提交处理和错误处理。
+
+```vue
+<template>
+  <div class="user-management">
+    <el-button type="primary" @click="openEditDialog">编辑用户信息</el-button>
+    
+    <el-dialog
+      v-model="dialogVisible"
+      title="编辑用户信息"
+      width="600px"
+      :before-close="handleClose"
+      destroy-on-close
+    >
+      <el-form
+        ref="formRef"
+        :model="userForm"
+        :rules="rules"
+        label-width="100px"
+        @submit.prevent
+      >
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="userForm.username" placeholder="请输入用户名" />
+        </el-form-item>
+        
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="userForm.email" placeholder="请输入邮箱" />
+        </el-form-item>
+        
+        <el-form-item label="角色" prop="role">
+          <el-select v-model="userForm.role" placeholder="请选择角色">
+            <el-option label="管理员" value="admin" />
+            <el-option label="编辑者" value="editor" />
+            <el-option label="查看者" value="viewer" />
+          </el-select>
+        </el-form-item>
+        
+        <el-form-item label="状态" prop="status">
+          <el-switch
+            v-model="userForm.status"
+            active-text="启用"
+            inactive-text="禁用"
+          />
+        </el-form-item>
+      </el-form>
+      
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="dialogVisible = false">取消</el-button>
+          <el-button type="primary" :loading="loading" @click="submitForm">
+            {{ loading ? '保存中...' : '保存' }}
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
+  </div>
+</template>
+
+<script setup>
+import { ref, reactive } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+const dialogVisible = ref(false)
+const loading = ref(false)
+const formRef = ref()
+
+const userForm = reactive({
+  username: '',
+  email: '',
+  role: '',
+  status: true
+})
+
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+  ],
+  email: [
+    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
+  ],
+  role: [
+    { required: true, message: '请选择角色', trigger: 'change' }
+  ]
+}
+
+const openEditDialog = () => {
+  // 模拟加载用户数据
+  Object.assign(userForm, {
+    username: 'john_doe',
+    email: 'john@example.com',
+    role: 'editor',
+    status: true
+  })
+  dialogVisible.value = true
+}
+
+const submitForm = async () => {
+  try {
+    await formRef.value.validate()
+    loading.value = true
+    
+    // 模拟 API 调用
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
+    ElMessage.success('用户信息更新成功')
+    dialogVisible.value = false
+  } catch (error) {
+    ElMessage.error('表单验证失败，请检查输入')
+  } finally {
+    loading.value = false
+  }
+}
+
+const handleClose = (done) => {
+  if (loading.value) {
+    ElMessage.warning('正在保存中，请稍候...')
+    return
+  }
+  
+  ElMessageBox.confirm('确认关闭？未保存的更改将丢失。', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    done()
+  }).catch(() => {})
+}
+</script>
+
+<style scoped>
+.user-management {
+  padding: 20px;
+}
+
+.dialog-footer {
+  text-align: right;
+}
+
+.dialog-footer .el-button {
+  margin-left: 10px;
+}
+</style>
+```
+
+### 图片预览对话框
+
+这个示例展示了如何创建一个图片预览对话框，支持多图切换、缩放和全屏显示。
+
+```vue
+<template>
+  <div class="image-gallery">
+    <div class="image-grid">
+      <div
+        v-for="(image, index) in images"
+        :key="index"
+        class="image-item"
+        @click="openPreview(index)"
+      >
+        <img :src="image.thumbnail" :alt="image.title" />
+        <div class="image-overlay">
+          <el-icon><ZoomIn /></el-icon>
+        </div>
+      </div>
+    </div>
+    
+    <el-dialog
+      v-model="previewVisible"
+      :title="currentImage?.title"
+      width="80%"
+      top="5vh"
+      :show-close="false"
+      class="image-preview-dialog"
+    >
+      <template #header="{ close }">
+        <div class="preview-header">
+          <span class="dialog-title">{{ currentImage?.title }}</span>
+          <div class="header-actions">
+            <el-button
+              :icon="FullScreen"
+              circle
+              @click="toggleFullscreen"
+              title="全屏"
+            />
+            <el-button
+              :icon="Close"
+              circle
+              @click="close"
+              title="关闭"
+            />
+          </div>
+        </div>
+      </template>
+      
+      <div class="preview-content">
+        <div class="image-container">
+          <img
+            ref="previewImg"
+            :src="currentImage?.url"
+            :alt="currentImage?.title"
+            :style="imageStyle"
+            @wheel="handleWheel"
+          />
+        </div>
+        
+        <div class="preview-controls">
+          <el-button-group>
+            <el-button :icon="ZoomOut" @click="zoomOut" title="缩小" />
+            <el-button @click="resetZoom" title="重置">{{ Math.round(scale * 100) }}%</el-button>
+            <el-button :icon="ZoomIn" @click="zoomIn" title="放大" />
+          </el-button-group>
+          
+          <el-button-group>
+            <el-button
+              :icon="ArrowLeft"
+              @click="prevImage"
+              :disabled="currentIndex === 0"
+              title="上一张"
+            />
+            <el-button>{{ currentIndex + 1 }} / {{ images.length }}</el-button>
+            <el-button
+              :icon="ArrowRight"
+              @click="nextImage"
+              :disabled="currentIndex === images.length - 1"
+              title="下一张"
+            />
+          </el-button-group>
+        </div>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, nextTick } from 'vue'
+import {
+  ZoomIn,
+  ZoomOut,
+  FullScreen,
+  Close,
+  ArrowLeft,
+  ArrowRight
+} from '@element-plus/icons-vue'
+
+const previewVisible = ref(false)
+const currentIndex = ref(0)
+const scale = ref(1)
+const previewImg = ref()
+
+const images = [
+  {
+    title: '风景图片 1',
+    thumbnail: 'https://picsum.photos/200/150?random=1',
+    url: 'https://picsum.photos/800/600?random=1'
+  },
+  {
+    title: '风景图片 2',
+    thumbnail: 'https://picsum.photos/200/150?random=2',
+    url: 'https://picsum.photos/800/600?random=2'
+  },
+  {
+    title: '风景图片 3',
+    thumbnail: 'https://picsum.photos/200/150?random=3',
+    url: 'https://picsum.photos/800/600?random=3'
+  }
+]
+
+const currentImage = computed(() => images[currentIndex.value])
+
+const imageStyle = computed(() => ({
+  transform: `scale(${scale.value})`,
+  transition: 'transform 0.3s ease'
+}))
+
+const openPreview = (index) => {
+  currentIndex.value = index
+  scale.value = 1
+  previewVisible.value = true
+}
+
+const zoomIn = () => {
+  scale.value = Math.min(scale.value * 1.2, 3)
+}
+
+const zoomOut = () => {
+  scale.value = Math.max(scale.value / 1.2, 0.5)
+}
+
+const resetZoom = () => {
+  scale.value = 1
+}
+
+const handleWheel = (event) => {
+  event.preventDefault()
+  if (event.deltaY < 0) {
+    zoomIn()
+  } else {
+    zoomOut()
+  }
+}
+
+const prevImage = () => {
+  if (currentIndex.value > 0) {
+    currentIndex.value--
+    scale.value = 1
+  }
+}
+
+const nextImage = () => {
+  if (currentIndex.value < images.length - 1) {
+    currentIndex.value++
+    scale.value = 1
+  }
+}
+
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    previewImg.value?.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
+</script>
+
+<style scoped>
+.image-gallery {
+  padding: 20px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.image-item {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+  transform: scale(1.05);
+}
+
+.image-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-size: 24px;
+}
+
+.image-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.preview-content {
+  text-align: center;
+}
+
+.image-container {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 60vh;
+  cursor: grab;
+}
+
+.image-container img:active {
+  cursor: grabbing;
+}
+
+.preview-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+:deep(.image-preview-dialog .el-dialog__body) {
+  padding: 20px;
+}
+</style>
 ```
 
 ## API
@@ -704,3 +1144,25 @@ const isMobile = computed(() => {
 - [ ] 对话框队列系统
 - [ ] 动态内容加载
 - [ ] 状态管理集成
+
+---
+
+## 总结
+
+Dialog 对话框是 Element Plus 中功能最为丰富的弹出层组件之一，具有以下特点：
+
+- **功能完整**：支持模态交互、懒渲染、嵌套显示等核心功能
+- **高度定制**：提供丰富的插槽和属性，满足各种定制需求
+- **交互友好**：内置关闭确认、键盘导航等用户体验优化
+- **性能优化**：懒渲染机制和销毁控制确保良好的性能表现
+- **无障碍支持**：完善的键盘导航和屏幕阅读器支持
+- **扩展性强**：支持嵌套、队列管理等复杂应用场景
+
+Dialog 适用于需要用户专注处理的重要交互场景，如表单编辑、内容预览、确认操作等。合理使用 Dialog 可以提升应用的用户体验和交互效率。
+
+## 参考资料
+
+- [Element Plus Dialog 官方文档](https://element-plus.org/zh-CN/component/dialog)
+- [Vue 3 Teleport 组件](https://cn.vuejs.org/guide/built-ins/teleport.html)
+- [Web 可访问性 - 模态对话框设计](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- [用户界面设计模式 - 对话框](https://ui-patterns.com/patterns/Dialog)

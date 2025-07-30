@@ -15,7 +15,7 @@
 
 ## 概述
 
-返回页面顶部的操作按钮。<mcreference link="https://element-plus.org/zh-CN/component/backtop.html" index="2">2</mcreference>
+Backtop 回到顶部组件提供快速返回页面顶部的功能，当页面滚动到一定高度时自动显示，点击后平滑滚动回到页面顶部。它支持自定义样式、位置调整和目标容器指定，是提升用户浏览体验的重要交互组件。<mcreference link="https://element-plus.org/zh-CN/component/backtop.html" index="2">2</mcreference>
 
 ## 基础用法
 
@@ -119,6 +119,419 @@ const handleClick = () => {
 </script>
 ```
 
+### 带进度指示的回到顶部
+
+结合滚动进度显示的回到顶部按钮：
+
+```vue
+<template>
+  <div>
+    <div class="content" style="height: 2000px; padding: 20px;">
+      <h2>长页面内容</h2>
+      <p v-for="i in 50" :key="i">这是第 {{ i }} 段内容...</p>
+    </div>
+    
+    <!-- 带进度的回到顶部 -->
+    <el-backtop 
+      :visibility-height="100" 
+      :right="50" 
+      :bottom="50"
+      @click="handleBackTop"
+    >
+      <div class="progress-backtop">
+        <svg class="progress-ring" width="40" height="40">
+          <circle
+            class="progress-ring-bg"
+            cx="20"
+            cy="20"
+            r="16"
+            fill="transparent"
+            stroke="#e4e7ed"
+            stroke-width="2"
+          />
+          <circle
+            class="progress-ring-progress"
+            cx="20"
+            cy="20"
+            r="16"
+            fill="transparent"
+            stroke="#409eff"
+            stroke-width="2"
+            :stroke-dasharray="circumference"
+            :stroke-dashoffset="progressOffset"
+          />
+        </svg>
+        <el-icon class="backtop-icon"><CaretTop /></el-icon>
+      </div>
+    </el-backtop>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { CaretTop } from '@element-plus/icons-vue'
+
+const scrollProgress = ref(0)
+const circumference = 2 * Math.PI * 16
+const progressOffset = ref(circumference)
+
+const updateProgress = () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+  const progress = (scrollTop / scrollHeight) * 100
+  scrollProgress.value = progress
+  progressOffset.value = circumference - (progress / 100) * circumference
+}
+
+const handleBackTop = () => {
+  console.log('回到顶部，当前进度：', scrollProgress.value.toFixed(1) + '%')
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateProgress)
+  updateProgress()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateProgress)
+})
+</script>
+
+<style scoped>
+.progress-backtop {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-progress {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.backtop-icon {
+  font-size: 16px;
+  color: #409eff;
+  z-index: 1;
+}
+</style>
+```
+
+## 实际应用示例
+
+### 博客文章页面
+
+在长文章页面中使用回到顶部：
+
+```vue
+<template>
+  <div class="blog-page">
+    <header class="blog-header">
+      <h1>技术博客文章标题</h1>
+      <div class="article-meta">
+        <span>发布时间：2024-01-15</span>
+        <span>阅读时间：约 15 分钟</span>
+      </div>
+    </header>
+    
+    <article class="blog-content">
+      <section v-for="section in articleSections" :key="section.id" class="article-section">
+        <h2>{{ section.title }}</h2>
+        <p v-for="paragraph in section.content" :key="paragraph">{{ paragraph }}</p>
+      </section>
+    </article>
+    
+    <!-- 智能回到顶部按钮 -->
+    <el-backtop 
+      :visibility-height="300"
+      :right="30"
+      :bottom="30"
+      @click="trackBackTopClick"
+    >
+      <div class="smart-backtop">
+        <el-icon><Top /></el-icon>
+        <span class="backtop-text">顶部</span>
+      </div>
+    </el-backtop>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { Top } from '@element-plus/icons-vue'
+
+const articleSections = ref([
+  {
+    id: 1,
+    title: '引言',
+    content: ['这是引言部分的内容...', '介绍文章的主要内容...']
+  },
+  {
+    id: 2,
+    title: '核心概念',
+    content: ['详细解释核心概念...', '提供相关示例...']
+  },
+  {
+    id: 3,
+    title: '实践应用',
+    content: ['展示实际应用场景...', '分析最佳实践...']
+  },
+  {
+    id: 4,
+    title: '总结',
+    content: ['总结文章要点...', '提供进一步学习建议...']
+  }
+])
+
+const trackBackTopClick = () => {
+  // 统计用户行为
+  console.log('用户点击了回到顶部按钮')
+  // 可以发送统计数据到分析服务
+}
+</script>
+
+<style scoped>
+.blog-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.blog-header {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e4e7ed;
+}
+
+.article-meta {
+  margin-top: 10px;
+  color: #909399;
+  font-size: 14px;
+}
+
+.article-meta span {
+  margin-right: 20px;
+}
+
+.article-section {
+  margin-bottom: 40px;
+}
+
+.article-section h2 {
+  color: #303133;
+  margin-bottom: 20px;
+}
+
+.article-section p {
+  margin-bottom: 15px;
+  color: #606266;
+}
+
+.smart-backtop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #409eff, #67c23a);
+  border-radius: 25px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.smart-backtop:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(64, 158, 255, 0.4);
+}
+
+.backtop-text {
+  font-size: 10px;
+  margin-top: 2px;
+}
+</style>
+```
+
+### 数据列表页面
+
+在长列表页面中使用回到顶部：
+
+```vue
+<template>
+  <div class="data-list-page">
+    <div class="list-header">
+      <h2>数据列表 ({{ dataList.length }} 条记录)</h2>
+      <div class="list-controls">
+        <el-button @click="loadMore">加载更多</el-button>
+        <el-button @click="scrollToTop">回到顶部</el-button>
+      </div>
+    </div>
+    
+    <div class="data-list">
+      <div 
+        v-for="item in dataList" 
+        :key="item.id" 
+        class="list-item"
+      >
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <div class="item-meta">
+          <span>ID: {{ item.id }}</span>
+          <span>创建时间: {{ item.createTime }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 列表专用回到顶部 -->
+    <el-backtop 
+      :visibility-height="200"
+      :right="40"
+      :bottom="80"
+      @click="handleListBackTop"
+    >
+      <div class="list-backtop">
+        <el-icon><ArrowUp /></el-icon>
+        <div class="item-count">{{ visibleItemCount }}</div>
+      </div>
+    </el-backtop>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ArrowUp } from '@element-plus/icons-vue'
+
+const dataList = ref([])
+const visibleItemCount = ref(0)
+
+// 生成模拟数据
+const generateData = (count) => {
+  const data = []
+  for (let i = 1; i <= count; i++) {
+    data.push({
+      id: i,
+      title: `数据项 ${i}`,
+      description: `这是第 ${i} 个数据项的描述信息...`,
+      createTime: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString()
+    })
+  }
+  return data
+}
+
+const loadMore = () => {
+  const newData = generateData(20)
+  dataList.value.push(...newData)
+}
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const updateVisibleCount = () => {
+  const scrollTop = window.pageYOffset
+  const itemHeight = 120 // 估算每个列表项的高度
+  visibleItemCount.value = Math.floor(scrollTop / itemHeight)
+}
+
+const handleListBackTop = () => {
+  console.log(`从第 ${visibleItemCount.value} 项回到顶部`)
+}
+
+onMounted(() => {
+  dataList.value = generateData(50)
+  window.addEventListener('scroll', updateVisibleCount)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateVisibleCount)
+})
+</script>
+
+<style scoped>
+.data-list-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e4e7ed;
+}
+
+.list-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.list-item {
+  padding: 20px;
+  margin-bottom: 15px;
+  background: white;
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.list-item h3 {
+  margin: 0 0 10px 0;
+  color: #303133;
+}
+
+.list-item p {
+  margin: 0 0 10px 0;
+  color: #606266;
+  line-height: 1.5;
+}
+
+.item-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: #909399;
+}
+
+.list-backtop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #f56c6c;
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0 4px 12px rgba(245, 108, 108, 0.3);
+}
+
+.item-count {
+  font-size: 10px;
+  margin-top: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1px 4px;
+  border-radius: 8px;
+}
+</style>
+```
+
 ## API
 
 ### Attributes
@@ -150,11 +563,197 @@ const handleClick = () => {
 
 ## 最佳实践
 
-1. **合理设置显示高度**：根据页面内容长度设置合适的 `visibility-height`，避免按钮过早或过晚出现
-2. **位置优化**：确保按钮位置不会遮挡重要内容，考虑移动端的手指操作区域
-3. **自定义样式**：使用插槽自定义按钮样式时，保持 40px * 40px 的尺寸约束
-4. **目标容器**：在特定容器中使用时，确保容器有明确的滚动属性
-5. **用户体验**：添加适当的动画效果和视觉反馈，提升交互体验
+### 1. 合理设置显示高度
+
+```vue
+<template>
+  <!-- 短页面：较低的触发高度 -->
+  <el-backtop :visibility-height="150" v-if="isShortPage" />
+  
+  <!-- 长页面：较高的触发高度 -->
+  <el-backtop :visibility-height="400" v-else />
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const isShortPage = ref(false)
+
+onMounted(() => {
+  // 根据页面高度动态调整
+  const pageHeight = document.documentElement.scrollHeight
+  isShortPage.value = pageHeight < 2000
+})
+</script>
+```
+
+### 2. 位置优化和响应式设计
+
+```vue
+<template>
+  <el-backtop 
+    :right="isMobile ? 20 : 40"
+    :bottom="isMobile ? 80 : 40"
+    :visibility-height="isMobile ? 100 : 200"
+  >
+    <div :class="['responsive-backtop', { 'mobile': isMobile }]">
+      <el-icon><CaretTop /></el-icon>
+    </div>
+  </el-backtop>
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { CaretTop } from '@element-plus/icons-vue'
+
+const isMobile = ref(false)
+
+const checkDevice = () => {
+  isMobile.value = window.innerWidth < 768
+}
+
+onMounted(() => {
+  checkDevice()
+  window.addEventListener('resize', checkDevice)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkDevice)
+})
+</script>
+
+<style scoped>
+.responsive-backtop {
+  width: 40px;
+  height: 40px;
+  background: #409eff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.responsive-backtop.mobile {
+  width: 50px;
+  height: 50px;
+  background: #67c23a;
+}
+
+.responsive-backtop:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+}
+</style>
+```
+
+### 3. 性能优化
+
+```vue
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// 防抖优化滚动监听
+let scrollTimer = null
+const isScrolling = ref(false)
+
+const handleScroll = () => {
+  isScrolling.value = true
+  
+  clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => {
+    isScrolling.value = false
+  }, 150)
+}
+
+// 节流优化
+let lastScrollTime = 0
+const throttledScroll = () => {
+  const now = Date.now()
+  if (now - lastScrollTime > 100) {
+    handleScroll()
+    lastScrollTime = now
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', throttledScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', throttledScroll)
+  clearTimeout(scrollTimer)
+})
+</script>
+```
+
+### 4. 多容器管理
+
+```vue
+<template>
+  <div class="multi-container-demo">
+    <!-- 主内容区域 -->
+    <div class="main-content" style="height: 1000px;">
+      <h2>主内容区域</h2>
+      <el-backtop :visibility-height="200" :right="40" :bottom="40" />
+    </div>
+    
+    <!-- 侧边栏滚动区域 -->
+    <div class="sidebar" id="sidebar">
+      <div style="height: 800px; padding: 20px;">
+        <h3>侧边栏内容</h3>
+        <p v-for="i in 30" :key="i">侧边栏项目 {{ i }}</p>
+      </div>
+      
+      <el-backtop 
+        target="#sidebar"
+        :visibility-height="100"
+        :right="10"
+        :bottom="10"
+      >
+        <div class="sidebar-backtop">
+          <el-icon><Top /></el-icon>
+        </div>
+      </el-backtop>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.multi-container-demo {
+  display: flex;
+  gap: 20px;
+}
+
+.main-content {
+  flex: 1;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 300px;
+  height: 400px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #e4e7ed;
+  position: relative;
+}
+
+.sidebar-backtop {
+  width: 30px;
+  height: 30px;
+  background: #e6a23c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+</style>
+```
 
 ## 常见问题
 
@@ -257,6 +856,26 @@ A: 可以通过 CSS 的 `scroll-behavior: smooth` 属性或监听 `click` 事件
 - 考虑不同屏幕尺寸的适配
 - 处理固定定位元素的层级
 - 管理页面滚动的整体体验
+
+## 总结
+
+Backtop 回到顶部组件是提升用户浏览体验的重要工具，支持：
+
+- **智能显示控制**：基于滚动高度自动显示/隐藏
+- **灵活的位置配置**：支持自定义按钮位置
+- **多容器支持**：可指定特定滚动容器
+- **完全自定义样式**：通过插槽实现个性化设计
+- **良好的性能表现**：优化的滚动监听机制
+- **响应式适配**：适应不同设备和屏幕尺寸
+
+掌握 Backtop 组件的使用，能够为用户提供便捷的页面导航体验，特别适用于长页面、文档站点和数据列表等场景。
+
+## 参考资料
+
+- [Element Plus Backtop 官方文档](https://element-plus.org/zh-CN/component/backtop.html)
+- [MDN - Window.scrollTo()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/scrollTo)
+- [CSS scroll-behavior](https://developer.mozilla.org/zh-CN/docs/Web/CSS/scroll-behavior)
+- [Web 性能优化 - 滚动事件](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/scroll_event)
 
 ---
 

@@ -17,9 +17,29 @@
 
 ## 概述
 
-加载数据时显示动效。<mcreference link="https://element-plus.org/zh-CN/component/loading.html" index="1">1</mcreference>
+Loading 加载组件用于在数据加载或异步操作过程中显示加载状态，为用户提供视觉反馈，提升用户体验。Element Plus 提供了两种调用 Loading 的方法：指令和服务。
 
-Element Plus 提供了两种调用 Loading 的方法：指令和服务。<mcreference link="https://element-plus.org/zh-CN/component/loading.html" index="1">1</mcreference>
+### 主要特性
+
+- **双重调用方式**：支持指令（v-loading）和服务（ElLoading.service）两种调用方式
+- **灵活覆盖范围**：支持区域加载和全屏加载两种模式
+- **高度可定制**：支持自定义加载文案、图标、背景色等
+- **单例模式**：全屏加载采用单例模式，避免重复创建
+- **安全可靠**：提供安全的自定义图标机制
+- **上下文继承**：支持应用程序上下文的继承
+- **响应式设计**：适配不同屏幕尺寸和设备
+- **无障碍访问**：支持屏幕阅读器和键盘导航
+
+### 适用场景
+
+- **数据加载**：表格数据、列表内容的异步加载
+- **表单提交**：表单数据提交过程的状态反馈
+- **文件操作**：文件上传、下载过程的进度显示
+- **页面切换**：路由跳转、页面初始化的加载状态
+- **API 请求**：网络请求过程的等待状态显示
+- **复杂计算**：前端计算密集型操作的进度反馈
+- **资源加载**：图片、视频等媒体资源的加载状态
+- **批量操作**：批量数据处理的进度指示
 
 ## 基础用法
 
@@ -219,6 +239,507 @@ ElLoading.service({}, appContext)
 
 如果您全局注册了 ELLoading 组件，它将自动继承应用的上下文环境。<mcreference link="https://element-plus.org/zh-CN/component/loading.html" index="1">1</mcreference>
 
+## 实际应用示例
+
+### 数据表格加载管理
+
+一个完整的数据表格加载管理示例，包含搜索、分页等功能：
+
+```vue
+<template>
+  <div class="table-loading-demo">
+    <div class="search-bar">
+      <el-input
+        v-model="searchKeyword"
+        placeholder="请输入搜索关键词"
+        style="width: 300px; margin-right: 12px"
+        @keyup.enter="handleSearch"
+      />
+      <el-button type="primary" @click="handleSearch" :loading="searchLoading">
+        搜索
+      </el-button>
+      <el-button @click="handleRefresh" :loading="refreshLoading">
+        刷新
+      </el-button>
+    </div>
+
+    <el-table
+      v-loading="tableLoading"
+      element-loading-text="正在加载数据..."
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
+      :data="tableData"
+      style="width: 100%; margin-top: 20px"
+      @sort-change="handleSortChange"
+    >
+      <el-table-column prop="id" label="ID" width="80" sortable="custom" />
+      <el-table-column prop="name" label="姓名" width="120" />
+      <el-table-column prop="email" label="邮箱" width="200" />
+      <el-table-column prop="department" label="部门" width="150" />
+      <el-table-column prop="position" label="职位" width="150" />
+      <el-table-column prop="createTime" label="创建时间" width="180" sortable="custom" />
+      <el-table-column label="操作" width="200">
+        <template #default="{ row }">
+          <el-button size="small" @click="handleEdit(row)" :loading="editingIds.includes(row.id)">
+            编辑
+          </el-button>
+          <el-button size="small" type="danger" @click="handleDelete(row)" :loading="deletingIds.includes(row.id)">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-pagination
+      v-model:current-page="currentPage"
+      v-model:page-size="pageSize"
+      :total="total"
+      :page-sizes="[10, 20, 50, 100]"
+      layout="total, sizes, prev, pager, next, jumper"
+      style="margin-top: 20px; text-align: right"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+const searchKeyword = ref('')
+const tableData = ref([])
+const currentPage = ref(1)
+const pageSize = ref(20)
+const total = ref(0)
+
+const tableLoading = ref(false)
+const searchLoading = ref(false)
+const refreshLoading = ref(false)
+const editingIds = ref([])
+const deletingIds = ref([])
+
+// 模拟数据
+const mockData = Array.from({ length: 100 }, (_, index) => ({
+  id: index + 1,
+  name: `用户${index + 1}`,
+  email: `user${index + 1}@example.com`,
+  department: ['技术部', '产品部', '运营部', '市场部'][index % 4],
+  position: ['工程师', '产品经理', '运营专员', '市场专员'][index % 4],
+  createTime: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+}))
+
+const loadTableData = async (showLoading = true) => {
+  if (showLoading) {
+    tableLoading.value = true
+  }
+  
+  try {
+    // 模拟API请求
+    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000))
+    
+    // 模拟搜索和分页
+    let filteredData = mockData
+    if (searchKeyword.value) {
+      filteredData = mockData.filter(item => 
+        item.name.includes(searchKeyword.value) || 
+        item.email.includes(searchKeyword.value)
+      )
+    }
+    
+    total.value = filteredData.length
+    const start = (currentPage.value - 1) * pageSize.value
+    const end = start + pageSize.value
+    tableData.value = filteredData.slice(start, end)
+    
+  } catch (error) {
+    ElMessage.error('加载数据失败')
+  } finally {
+    tableLoading.value = false
+    searchLoading.value = false
+    refreshLoading.value = false
+  }
+}
+
+const handleSearch = () => {
+  searchLoading.value = true
+  currentPage.value = 1
+  loadTableData(false)
+}
+
+const handleRefresh = () => {
+  refreshLoading.value = true
+  searchKeyword.value = ''
+  currentPage.value = 1
+  loadTableData(false)
+}
+
+const handleSizeChange = () => {
+  currentPage.value = 1
+  loadTableData()
+}
+
+const handleCurrentChange = () => {
+  loadTableData()
+}
+
+const handleSortChange = ({ prop, order }) => {
+  // 模拟排序
+  loadTableData()
+}
+
+const handleEdit = async (row) => {
+  editingIds.value.push(row.id)
+  try {
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    ElMessage.success('编辑成功')
+  } catch (error) {
+    ElMessage.error('编辑失败')
+  } finally {
+    editingIds.value = editingIds.value.filter(id => id !== row.id)
+  }
+}
+
+const handleDelete = async (row) => {
+  try {
+    await ElMessageBox.confirm('确认删除该用户吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+    
+    deletingIds.value.push(row.id)
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    ElMessage.success('删除成功')
+    loadTableData()
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error('删除失败')
+    }
+  } finally {
+    deletingIds.value = deletingIds.value.filter(id => id !== row.id)
+  }
+}
+
+onMounted(() => {
+  loadTableData()
+})
+</script>
+
+<style scoped>
+.table-loading-demo {
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+</style>
+```
+
+### 文件上传进度管理
+
+一个完整的文件上传进度管理示例：
+
+```vue
+<template>
+  <div class="upload-demo">
+    <div class="upload-area">
+      <el-upload
+        ref="uploadRef"
+        class="upload-dragger"
+        drag
+        :action="uploadUrl"
+        :multiple="true"
+        :auto-upload="false"
+        :on-change="handleFileChange"
+        :before-upload="beforeUpload"
+        :http-request="customUpload"
+      >
+        <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+        <div class="el-upload__text">
+          将文件拖到此处，或<em>点击上传</em>
+        </div>
+        <template #tip>
+          <div class="el-upload__tip">
+            支持 jpg/png/pdf 文件，且不超过 10MB
+          </div>
+        </template>
+      </el-upload>
+    </div>
+
+    <div class="upload-list" v-if="fileList.length > 0">
+      <h3>上传列表</h3>
+      <div class="file-item" v-for="file in fileList" :key="file.uid">
+        <div class="file-info">
+          <el-icon><document /></el-icon>
+          <span class="file-name">{{ file.name }}</span>
+          <span class="file-size">({{ formatFileSize(file.size) }})</span>
+        </div>
+        
+        <div class="file-progress" v-if="file.status === 'uploading'">
+          <el-progress 
+            :percentage="file.progress" 
+            :status="file.progress === 100 ? 'success' : undefined"
+          />
+        </div>
+        
+        <div class="file-status">
+          <el-tag v-if="file.status === 'ready'" type="info">待上传</el-tag>
+          <el-tag v-else-if="file.status === 'uploading'" type="warning">
+            <el-icon class="is-loading"><loading /></el-icon>
+            上传中
+          </el-tag>
+          <el-tag v-else-if="file.status === 'success'" type="success">上传成功</el-tag>
+          <el-tag v-else-if="file.status === 'error'" type="danger">上传失败</el-tag>
+        </div>
+        
+        <div class="file-actions">
+          <el-button 
+            v-if="file.status === 'ready' || file.status === 'error'"
+            size="small" 
+            type="primary" 
+            @click="uploadSingleFile(file)"
+            :loading="file.status === 'uploading'"
+          >
+            上传
+          </el-button>
+          <el-button 
+            size="small" 
+            type="danger" 
+            @click="removeFile(file)"
+            :disabled="file.status === 'uploading'"
+          >
+            删除
+          </el-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-actions" v-if="fileList.length > 0">
+      <el-button 
+        type="primary" 
+        @click="uploadAllFiles"
+        :loading="isUploading"
+        :disabled="!hasReadyFiles"
+      >
+        全部上传
+      </el-button>
+      <el-button @click="clearAllFiles" :disabled="isUploading">
+        清空列表
+      </el-button>
+    </div>
+
+    <!-- 全屏上传进度 -->
+    <div v-loading.fullscreen.lock="showGlobalLoading" 
+         element-loading-text="正在批量上传文件..."
+         element-loading-background="rgba(0, 0, 0, 0.8)">
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
+import { UploadFilled, Document, Loading } from '@element-plus/icons-vue'
+
+const uploadRef = ref()
+const fileList = ref([])
+const isUploading = ref(false)
+const showGlobalLoading = ref(false)
+const uploadUrl = 'https://jsonplaceholder.typicode.com/posts/'
+
+const hasReadyFiles = computed(() => {
+  return fileList.value.some(file => file.status === 'ready' || file.status === 'error')
+})
+
+const handleFileChange = (file, files) => {
+  const newFile = {
+    uid: file.uid,
+    name: file.name,
+    size: file.size,
+    raw: file.raw,
+    status: 'ready',
+    progress: 0
+  }
+  
+  const existingIndex = fileList.value.findIndex(f => f.uid === file.uid)
+  if (existingIndex > -1) {
+    fileList.value[existingIndex] = newFile
+  } else {
+    fileList.value.push(newFile)
+  }
+}
+
+const beforeUpload = (file) => {
+  const isValidType = ['image/jpeg', 'image/png', 'application/pdf'].includes(file.type)
+  const isValidSize = file.size / 1024 / 1024 < 10
+  
+  if (!isValidType) {
+    ElMessage.error('只支持 JPG、PNG、PDF 格式的文件')
+    return false
+  }
+  
+  if (!isValidSize) {
+    ElMessage.error('文件大小不能超过 10MB')
+    return false
+  }
+  
+  return true
+}
+
+const customUpload = async (options) => {
+  const { file } = options
+  const fileItem = fileList.value.find(f => f.uid === file.uid)
+  
+  if (!fileItem) return
+  
+  fileItem.status = 'uploading'
+  fileItem.progress = 0
+  
+  try {
+    // 模拟文件上传进度
+    for (let i = 0; i <= 100; i += 10) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      fileItem.progress = i
+    }
+    
+    // 模拟上传完成
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    fileItem.status = 'success'
+    fileItem.progress = 100
+    ElMessage.success(`${file.name} 上传成功`)
+    
+  } catch (error) {
+    fileItem.status = 'error'
+    fileItem.progress = 0
+    ElMessage.error(`${file.name} 上传失败`)
+  }
+}
+
+const uploadSingleFile = async (file) => {
+  await customUpload({ file: file.raw })
+}
+
+const uploadAllFiles = async () => {
+  const readyFiles = fileList.value.filter(file => file.status === 'ready' || file.status === 'error')
+  
+  if (readyFiles.length === 0) {
+    ElMessage.warning('没有待上传的文件')
+    return
+  }
+  
+  isUploading.value = true
+  showGlobalLoading.value = true
+  
+  try {
+    // 并发上传文件
+    const uploadPromises = readyFiles.map(file => uploadSingleFile(file))
+    await Promise.all(uploadPromises)
+    
+    ElMessage.success('所有文件上传完成')
+  } catch (error) {
+    ElMessage.error('批量上传过程中出现错误')
+  } finally {
+    isUploading.value = false
+    showGlobalLoading.value = false
+  }
+}
+
+const removeFile = (file) => {
+  const index = fileList.value.findIndex(f => f.uid === file.uid)
+  if (index > -1) {
+    fileList.value.splice(index, 1)
+  }
+}
+
+const clearAllFiles = () => {
+  fileList.value = []
+  uploadRef.value?.clearFiles()
+}
+
+const formatFileSize = (size) => {
+  if (size < 1024) {
+    return size + ' B'
+  } else if (size < 1024 * 1024) {
+    return (size / 1024).toFixed(1) + ' KB'
+  } else {
+    return (size / 1024 / 1024).toFixed(1) + ' MB'
+  }
+}
+</script>
+
+<style scoped>
+.upload-demo {
+  padding: 20px;
+  max-width: 800px;
+}
+
+.upload-area {
+  margin-bottom: 20px;
+}
+
+.upload-list {
+  margin-bottom: 20px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  margin: 0 8px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-size {
+  color: #909399;
+  font-size: 12px;
+}
+
+.file-progress {
+  width: 200px;
+  margin: 0 16px;
+}
+
+.file-status {
+  margin: 0 16px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding-top: 20px;
+  border-top: 1px solid #ebeef5;
+}
+</style>
+```
+
 ## API
 
 ### 配置项（服务方式）
@@ -364,6 +885,44 @@ A: 现在 Loading 接受一条 context 作为消息构造器的第二个参数�
 - 优化移动端的加载性能
 
 ---
+
+## 总结
+
+Loading 加载组件是 Element Plus 中用于显示加载状态的重要反馈组件，具有以下核心特点：
+
+### 核心特点
+
+1. **双重调用方式**：支持指令和服务两种调用方式，满足不同场景需求
+2. **灵活覆盖范围**：可以应用于元素、区域或全屏，覆盖范围可控
+3. **高度可定制**：支持自定义文本、图标、背景色等视觉元素
+4. **单例模式**：全屏加载采用单例模式，避免重复显示
+5. **安全可靠**：提供完善的错误处理和状态管理机制
+
+### 适用场景
+
+- **数据加载**：表格、列表、图表等数据获取时的加载提示
+- **表单提交**：用户提交表单时的处理状态显示
+- **文件操作**：文件上传、下载、处理时的进度提示
+- **页面切换**：路由跳转、页面初始化时的加载状态
+- **API 请求**：异步请求处理过程中的用户反馈
+
+### 最佳实践建议
+
+1. **合理选择调用方式**：简单场景使用指令，复杂场景使用服务方式
+2. **适当的加载时机**：在真正需要等待的操作时才显示加载状态
+3. **提供有意义的提示文本**：让用户了解当前正在进行的操作
+4. **控制加载时长**：避免长时间显示加载状态，提供超时处理
+5. **保持一致性**：在同一应用中保持加载样式和交互的一致性
+6. **考虑用户体验**：在必要时提供取消操作的能力
+
+通过合理使用 Loading 组件，可以有效提升应用的用户体验，让用户清楚了解系统状态，减少等待时的焦虑感。
+
+## 参考资料
+
+- [Element Plus Loading 官方文档](https://element-plus.org/zh-CN/component/loading.html)
+- [Vue 3 指令文档](https://cn.vuejs.org/guide/reusability/custom-directives.html)
+- [Web 无障碍访问指南](https://www.w3.org/WAI/WCAG21/quickref/)
+- [用户体验设计原则](https://www.nngroup.com/articles/response-times-3-important-limits/)
 
 ## 学习记录
 
