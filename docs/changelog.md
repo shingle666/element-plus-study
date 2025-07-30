@@ -2,6 +2,51 @@
 
 本文档记录了 Element Plus 学习宝典项目的所有重要更新和变更。
 
+## [1.0.6] - 2025-07-30
+
+### 📚 文档完善
+- **Scrollbar 滚动条组件**: 同步官方最新 API 并补充完整文档
+  - 新增官方新增属性（id、role、aria-label、aria-orientation、tabindex）
+  - 新增 end-reached 事件支持和无限滚动示例
+  - 完善无障碍访问配置和键盘导航支持
+  - 提供动态加载和用户体验优化的完整示例
+  - 包含所有 Attributes、Events、Slots、Exposes API 的详细说明
+
+### 🎯 技术更新
+- **API 同步**: 与 Element Plus 官方最新版本保持同步
+- **无障碍增强**: 完善 ARIA 属性和键盘导航支持
+- **事件机制优化**: 新增 end-reached 事件处理
+
+### 🚀 开发体验
+- **功能完整性**: 涵盖无限滚动等高级功能
+- **实用性提升**: 提供更多实际应用场景示例
+- **可访问性**: 增强对残障用户的友好支持
+
+---
+
+## [1.0.5] - 2025-07-30
+
+### 📚 文档完善
+- **Scrollbar 滚动条组件**: 补充完整的 API 文档
+  - 新增 Scrollbar Attributes API 文档（height、max-height、native、wrap-style、wrap-class、view-style、view-class、noresize、tag、always、min-size）
+  - 新增 Scrollbar Events API 文档（scroll 事件）
+  - 新增 Scrollbar Slots API 文档（default 插槽）
+  - 新增 Scrollbar Exposes API 文档（handleScroll、scrollTo、setScrollTop、setScrollLeft、update、wrapRef）
+  - 提供详细的使用示例和交互式演示
+  - 包含高度控制、样式自定义、原生对比、事件监听、插槽使用、方法调用等完整示例
+
+### 🎯 技术更新
+- **API 文档标准化**: 统一 API 文档格式和示例风格
+- **交互式示例**: 提供丰富的交互式代码示例
+- **最佳实践**: 展示组件的各种使用场景和最佳实践
+
+### 🚀 开发体验
+- **完整性提升**: Scrollbar 组件文档现已包含所有 API 说明
+- **学习友好**: 提供从基础到高级的完整学习路径
+- **实用性增强**: 包含实际开发中常用的场景示例
+
+---
+
 ## [1.0.4] - 2025-07-30
 
 ### 📚 基础组件文档完善
