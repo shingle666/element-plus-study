@@ -185,13 +185,13 @@ element-plus-study/
 - [Radio 单选框](./表单组件/Radio 单选框.md)
 - [Rate 评分](./表单组件/Rate 评分.md)
 - [Select 选择器](./表单组件/Select 选择器.md)
-- [Select V2 虚拟化选择器](./表单组件/Select V2 虚拟化选择器.md)
+- [Virtualized Select 虚拟化选择器](./表单组件/Virtualized Select 虚拟化选择器.md)
 - [Slider 滑块](./表单组件/Slider 滑块.md)
 - [Switch 开关](./表单组件/Switch 开关.md)
 - [Time Picker 时间选择器](./表单组件/Time Picker 时间选择器.md)
 - [Time Select 时间选择](./表单组件/Time Select 时间选择.md)
 - [Transfer 穿梭框](./表单组件/Transfer 穿梭框.md)
-- [Tree Select 树形选择](./表单组件/Tree Select 树形选择.md)
+- [TreeSelect 树形选择](./表单组件/TreeSelect 树形选择.md)
 - [Upload 上传](./表单组件/Upload 上传.md)
 
 #### 数据展示组件
@@ -215,7 +215,7 @@ element-plus-study/
 - [Tag 标签](./数据展示组件/Tag 标签.md)
 - [Timeline 时间线](./数据展示组件/Timeline 时间线.md)
 - [Tree 树形控件](./数据展示组件/Tree 树形控件.md)
-- [Virtualized List 虚拟化列表](./数据展示组件/Virtualized List 虚拟化列表.md)
+
 - [Virtualized Table 虚拟化表格](./数据展示组件/Virtualized Table 虚拟化表格.md)
 - [Virtualized Tree 虚拟化树形控件](./数据展示组件/Virtualized Tree 虚拟化树形控件.md)
 
@@ -250,6 +250,8 @@ element-plus-study/
 - [工具类组件](./其他组件/02.工具类组件.md)
 - [特效与动画](./其他组件/03.特效与动画.md)
 - [特殊功能组件](./其他组件/04.特殊功能组件.md)
+- [Divider 分割线](./其他组件/​Divider 分割线.md)
+- [Watermark 水印](./其他组件/Watermark 水印.md)
 
 #### 项目实践
 - [综合项目实战一](./项目实践/01.综合项目实战一.md)
