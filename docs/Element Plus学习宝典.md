@@ -76,6 +76,7 @@ element-plus-study/
 │   ├── 📊 数据展示组件/              # Table、Tree、Card 等
 │   ├── 🧭 导航组件/                  # Menu、Breadcrumb、Tabs 等
 │   ├── 💬 反馈组件/                  # Dialog、Message、Loading 等
+│   ├── ⚙️ 配置组件/                  # Config Provider 全局配置等
 │   ├── 🔧 其他组件/                  # 布局容器、工具类组件等
 │   ├── 🏛️ 架构设计/                  # 整体架构与设计理念
 │   ├── ⚡ 高级特性/                  # 高级组件模式与实践
@@ -166,27 +167,77 @@ element-plus-study/
 - [Typography 排版](./基础组件/Typography 排版.md)
 
 #### 表单组件
-- [基础输入组件](./表单组件/01.基础输入组件.md)
-- [选择器组件](./表单组件/02.选择器组件.md)
-- [高级选择器一](./表单组件/03.高级选择器一.md)
-- [高级选择器二](./表单组件/04.高级选择器二.md)
-- [日期时间组件](./表单组件/05.日期时间组件.md)
-- [特殊输入组件](./表单组件/06.特殊输入组件.md)
-- [新特性组件](./表单组件/07.新特性组件.md)
-- [表单验证与优化](./表单组件/08.表单验证与优化.md)
+- [Input 输入框](./表单组件/Input 输入框.md)
+- [Autocomplete 自动补全输入框](./表单组件/Autocomplete 自动补全输入框.md)
+- [Cascader 级联选择器](./表单组件/Cascader 级联选择器.md)
+- [Checkbox 多选框](./表单组件/Checkbox 多选框.md)
+- [Color Picker 颜色选择器](./表单组件/Color Picker 颜色选择器.md)
+- [Date Picker 日期选择器](./表单组件/Date Picker 日期选择器.md)
+- [DateTime Picker 日期时间选择器](./表单组件/DateTime Picker 日期时间选择器.md)
+- [Form 表单](./表单组件/Form 表单.md)
+- [Input Number 数字输入框](./表单组件/Input Number 数字输入框.md)
+- [Radio 单选框](./表单组件/Radio 单选框.md)
+- [Rate 评分](./表单组件/Rate 评分.md)
+- [Select 选择器](./表单组件/Select 选择器.md)
+- [Select V2 虚拟化选择器](./表单组件/Select V2 虚拟化选择器.md)
+- [Slider 滑块](./表单组件/Slider 滑块.md)
+- [Switch 开关](./表单组件/Switch 开关.md)
+- [Time Picker 时间选择器](./表单组件/Time Picker 时间选择器.md)
+- [Time Select 时间选择](./表单组件/Time Select 时间选择.md)
+- [Transfer 穿梭框](./表单组件/Transfer 穿梭框.md)
+- [Tree Select 树形选择](./表单组件/Tree Select 树形选择.md)
+- [Upload 上传](./表单组件/Upload 上传.md)
 
 #### 数据展示组件
-- [基础数据展示](./数据展示组件/01.基础数据展示.md)
-- [高级数据展示](./数据展示组件/02.高级数据展示.md)
-- [树形与虚拟化组件](./数据展示组件/03.树形与虚拟化组件.md)
+- [Avatar 头像](./数据展示组件/Avatar 头像.md)
+- [Badge 徽章](./数据展示组件/Badge 徽章.md)
+- [Calendar 日历](./数据展示组件/Calendar 日历.md)
+- [Card 卡片](./数据展示组件/Card 卡片.md)
+- [Carousel 走马灯](./数据展示组件/Carousel 走马灯.md)
+- [Collapse 折叠面板](./数据展示组件/Collapse 折叠面板.md)
+- [Descriptions 描述列表](./数据展示组件/Descriptions 描述列表.md)
+- [Empty 空状态](./数据展示组件/Empty 空状态.md)
+- [Image 图片](./数据展示组件/Image 图片.md)
+- [Infinite Scroll 无限滚动](./数据展示组件/Infinite Scroll 无限滚动.md)
+- [Pagination 分页](./数据展示组件/Pagination 分页.md)
+- [Progress 进度条](./数据展示组件/Progress 进度条.md)
+- [Result 结果](./数据展示组件/Result 结果.md)
+- [Segmented 分段控制器](./数据展示组件/Segmented 分段控制器.md)
+- [Skeleton 骨架屏](./数据展示组件/Skeleton 骨架屏.md)
+- [Statistic 统计组件](./数据展示组件/Statistic 统计组件.md)
+- [Table 表格](./数据展示组件/Table 表格.md)
+- [Tag 标签](./数据展示组件/Tag 标签.md)
+- [Timeline 时间线](./数据展示组件/Timeline 时间线.md)
+- [Tree 树形控件](./数据展示组件/Tree 树形控件.md)
+- [Virtualized List 虚拟化列表](./数据展示组件/Virtualized List 虚拟化列表.md)
+- [Virtualized Table 虚拟化表格](./数据展示组件/Virtualized Table 虚拟化表格.md)
+- [Virtualized Tree 虚拟化树形控件](./数据展示组件/Virtualized Tree 虚拟化树形控件.md)
+
+#### 配置组件
+- [Config Provider 全局配置](./配置组件/Config Provider 全局配置.md)
 
 #### 导航组件
-- [菜单面包屑步骤条](./导航组件/01.菜单面包屑步骤条.md)
+- [Affix 固钉](./导航组件/Affix 固钉.md)
+- [Anchor 锚点](./导航组件/Anchor 锚点.md)
+- [Backtop 回到顶部](./导航组件/Backtop 回到顶部.md)
+- [Breadcrumb 面包屑](./导航组件/Breadcrumb 面包屑.md)
+- [Dropdown 下拉菜单](./导航组件/Dropdown 下拉菜单.md)
+- [Menu 菜单](./导航组件/Menu 菜单.md)
+- [Page Header 页头](./导航组件/Page Header 页头.md)
+- [Steps 步骤条](./导航组件/Steps 步骤条.md)
+- [Tabs 标签页](./导航组件/Tabs 标签页.md)
 
 #### 反馈组件
-- [消息反馈组件](./反馈组件/01.消息反馈组件.md)
-- [弹出层组件](./反馈组件/02.弹出层组件.md)
-- [加载与引导组件](./反馈组件/03.加载与引导组件.md)
+- [Alert 提示](./反馈组件/Alert 提示.md)
+- [Dialog 对话框](./反馈组件/Dialog 对话框.md)
+- [Drawer 抽屉](./反馈组件/Drawer 抽屉.md)
+- [Loading 加载](./反馈组件/Loading 加载.md)
+- [Message Box 消息弹出框](./反馈组件/Message Box 消息弹出框.md)
+- [Message 消息提示](./反馈组件/Message 消息提示.md)
+- [Notification 通知](./反馈组件/Notification 通知.md)
+- [Popconfirm 气泡确认框](./反馈组件/Popconfirm 气泡确认框.md)
+- [Popover 弹出框](./反馈组件/Popover 弹出框.md)
+- [Tooltip 文字提示](./反馈组件/Tooltip 文字提示.md)
 
 #### 其他组件
 - [布局与容器进阶](./其他组件/01.布局与容器进阶.md)
