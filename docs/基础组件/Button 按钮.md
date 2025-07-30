@@ -583,6 +583,393 @@ import {
 | loading | 自定义加载中组件 |
 | icon | 自定义图标组件 |
 
+### Button Exposes
+
+| 方法名 | 说明 | 类型 |
+| --- | --- | --- |
+| ref | 按钮 html 元素 | Ref\<HTMLButtonElement\> |
+| size | 按钮尺寸 | ComputedRef\<string\> |
+| type | 按钮类型 | ComputedRef\<string\> |
+| disabled | 按钮是否禁用 | ComputedRef\<boolean\> |
+| shouldAddSpace | 是否在两个字符之间添加空格 | ComputedRef\<boolean\> |
+
+#### Button Exposes 使用示例
+
+通过模板引用可以访问按钮组件暴露的属性和方法：
+
+```vue
+<template>
+  <div class="button-exposes-demo">
+    <h3>Button Exposes 示例</h3>
+    
+    <!-- 按钮组件 -->
+    <div class="button-section">
+      <el-button 
+        ref="primaryButtonRef"
+        type="primary" 
+        :size="buttonSize"
+        :disabled="isDisabled"
+        @click="handleButtonClick"
+      >
+        主要按钮
+      </el-button>
+      
+      <el-button 
+        ref="successButtonRef"
+        type="success" 
+        size="large"
+        auto-insert-space
+      >
+        成功按钮
+      </el-button>
+    </div>
+    
+    <!-- 控制面板 -->
+    <div class="control-panel">
+      <h4>控制面板</h4>
+      <div class="control-item">
+        <label>按钮尺寸：</label>
+        <el-select v-model="buttonSize" style="width: 120px">
+          <el-option label="Large" value="large" />
+          <el-option label="Default" value="default" />
+          <el-option label="Small" value="small" />
+        </el-select>
+      </div>
+      
+      <div class="control-item">
+        <el-checkbox v-model="isDisabled">禁用按钮</el-checkbox>
+      </div>
+      
+      <div class="control-item">
+        <el-button @click="getButtonInfo">获取按钮信息</el-button>
+        <el-button @click="focusButton">聚焦按钮</el-button>
+      </div>
+    </div>
+    
+    <!-- 信息显示 -->
+    <div class="info-panel">
+      <h4>按钮信息</h4>
+      <div class="info-item">
+        <strong>主要按钮尺寸：</strong> {{ primaryButtonInfo.size }}
+      </div>
+      <div class="info-item">
+        <strong>主要按钮类型：</strong> {{ primaryButtonInfo.type }}
+      </div>
+      <div class="info-item">
+        <strong>主要按钮禁用状态：</strong> {{ primaryButtonInfo.disabled }}
+      </div>
+      <div class="info-item">
+        <strong>成功按钮是否添加空格：</strong> {{ successButtonInfo.shouldAddSpace }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, reactive, nextTick } from 'vue'
+
+// 模板引用
+const primaryButtonRef = ref()
+const successButtonRef = ref()
+
+// 响应式数据
+const buttonSize = ref('default')
+const isDisabled = ref(false)
+
+// 按钮信息
+const primaryButtonInfo = reactive({
+  size: '',
+  type: '',
+  disabled: false
+})
+
+const successButtonInfo = reactive({
+  shouldAddSpace: false
+})
+
+// 获取按钮信息
+const getButtonInfo = () => {
+  if (primaryButtonRef.value) {
+    primaryButtonInfo.size = primaryButtonRef.value.size
+    primaryButtonInfo.type = primaryButtonRef.value.type
+    primaryButtonInfo.disabled = primaryButtonRef.value.disabled
+  }
+  
+  if (successButtonRef.value) {
+    successButtonInfo.shouldAddSpace = successButtonRef.value.shouldAddSpace
+  }
+}
+
+// 聚焦按钮
+const focusButton = async () => {
+  await nextTick()
+  if (primaryButtonRef.value?.ref) {
+    primaryButtonRef.value.ref.focus()
+  }
+}
+
+// 按钮点击事件
+const handleButtonClick = () => {
+  console.log('按钮被点击了')
+  getButtonInfo() // 点击时自动更新信息
+}
+
+// 初始化信息
+nextTick(() => {
+  getButtonInfo()
+})
+</script>
+
+<style scoped>
+.button-exposes-demo {
+  padding: 20px;
+}
+
+.button-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-bg-color);
+}
+
+.button-section .el-button {
+  margin-right: 10px;
+}
+
+.control-panel {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-fill-color-lighter);
+}
+
+.control-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.control-item label {
+  width: 80px;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.control-item .el-button {
+  margin-right: 10px;
+}
+
+.info-panel {
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-fill-color-extra-light);
+}
+
+.info-item {
+  margin-bottom: 8px;
+  color: var(--el-text-color-primary);
+}
+
+.info-item strong {
+  color: var(--el-color-primary);
+}
+</style>
+```
+
+#### 高级用法：动态按钮管理
+
+```vue
+<template>
+  <div class="advanced-button-demo">
+    <h3>动态按钮管理</h3>
+    
+    <!-- 动态按钮列表 -->
+    <div class="button-list">
+      <el-button
+        v-for="(button, index) in buttons"
+        :key="button.id"
+        :ref="el => setButtonRef(el, index)"
+        :type="button.type"
+        :size="button.size"
+        :disabled="button.disabled"
+        :loading="button.loading"
+        @click="handleDynamicButtonClick(button, index)"
+      >
+        {{ button.text }}
+      </el-button>
+    </div>
+    
+    <!-- 操作控制 -->
+    <div class="operations">
+      <el-button @click="addButton">添加按钮</el-button>
+      <el-button @click="removeLastButton">移除最后一个</el-button>
+      <el-button @click="toggleAllButtons">切换全部状态</el-button>
+      <el-button @click="getAllButtonsInfo">获取所有按钮信息</el-button>
+    </div>
+    
+    <!-- 按钮信息展示 -->
+    <div class="buttons-info" v-if="buttonsInfo.length > 0">
+      <h4>按钮信息列表</h4>
+      <div 
+        v-for="(info, index) in buttonsInfo" 
+        :key="index"
+        class="button-info-item"
+      >
+        <strong>按钮 {{ index + 1 }}:</strong>
+        类型: {{ info.type }}, 
+        尺寸: {{ info.size }}, 
+        禁用: {{ info.disabled }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, reactive, nextTick } from 'vue'
+
+// 按钮数据
+const buttons = ref([
+  { id: 1, text: '按钮 1', type: 'primary', size: 'default', disabled: false, loading: false },
+  { id: 2, text: '按钮 2', type: 'success', size: 'default', disabled: false, loading: false },
+  { id: 3, text: '按钮 3', type: 'warning', size: 'default', disabled: false, loading: false }
+])
+
+// 按钮引用数组
+const buttonRefs = ref([])
+
+// 按钮信息
+const buttonsInfo = ref([])
+
+// 设置按钮引用
+const setButtonRef = (el, index) => {
+  if (el) {
+    buttonRefs.value[index] = el
+  }
+}
+
+// 添加按钮
+const addButton = () => {
+  const newId = Math.max(...buttons.value.map(b => b.id)) + 1
+  const types = ['primary', 'success', 'warning', 'danger', 'info']
+  const randomType = types[Math.floor(Math.random() * types.length)]
+  
+  buttons.value.push({
+    id: newId,
+    text: `按钮 ${newId}`,
+    type: randomType,
+    size: 'default',
+    disabled: false,
+    loading: false
+  })
+}
+
+// 移除最后一个按钮
+const removeLastButton = () => {
+  if (buttons.value.length > 1) {
+    buttons.value.pop()
+    buttonRefs.value.pop()
+  }
+}
+
+// 切换所有按钮状态
+const toggleAllButtons = () => {
+  buttons.value.forEach(button => {
+    button.disabled = !button.disabled
+  })
+}
+
+// 动态按钮点击事件
+const handleDynamicButtonClick = async (button, index) => {
+  // 设置加载状态
+  button.loading = true
+  
+  // 模拟异步操作
+  setTimeout(() => {
+    button.loading = false
+    console.log(`点击了按钮: ${button.text}`)
+  }, 1000)
+  
+  // 获取当前按钮信息
+  await nextTick()
+  if (buttonRefs.value[index]) {
+    const buttonRef = buttonRefs.value[index]
+    console.log('按钮信息:', {
+      type: buttonRef.type,
+      size: buttonRef.size,
+      disabled: buttonRef.disabled
+    })
+  }
+}
+
+// 获取所有按钮信息
+const getAllButtonsInfo = async () => {
+  await nextTick()
+  buttonsInfo.value = buttonRefs.value.map(buttonRef => {
+    if (buttonRef) {
+      return {
+        type: buttonRef.type,
+        size: buttonRef.size,
+        disabled: buttonRef.disabled
+      }
+    }
+    return null
+  }).filter(Boolean)
+}
+</script>
+
+<style scoped>
+.advanced-button-demo {
+  padding: 20px;
+}
+
+.button-list {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-bg-color);
+}
+
+.button-list .el-button {
+  margin: 0 10px 10px 0;
+}
+
+.operations {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-fill-color-lighter);
+}
+
+.operations .el-button {
+  margin-right: 10px;
+}
+
+.buttons-info {
+  padding: 15px;
+  border: 1px solid var(--el-border-color);
+  border-radius: var(--el-border-radius-base);
+  background-color: var(--el-fill-color-extra-light);
+}
+
+.button-info-item {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: var(--el-bg-color);
+  border-radius: var(--el-border-radius-small);
+  color: var(--el-text-color-primary);
+}
+
+.button-info-item strong {
+  color: var(--el-color-primary);
+}
+</style>
+```
+
 ### ButtonGroup Attributes
 
 | 属性名 | 说明 | 类型 | 可选值 | 默认值 |
