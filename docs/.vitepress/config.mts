@@ -29,6 +29,7 @@ export default defineConfig({
     nav: [
       { text: '🏠 首页', link: '/' },
       { text: '📚 学习宝典', link: '/Element Plus学习宝典' },
+      { text: '📝 更新日志', link: '/changelog' },
       {
         text: '📋 基础学习',
         items: [
@@ -78,7 +79,7 @@ export default defineConfig({
           text: '基础概念',
           items: [
             { text: '设计原则与基础概念', link: '/基础概念/01.设计原则与基础概念' },
-            { text: '环境搭建与快速开始', link: '/基础概念/02.环境搭建与快速开始' }
+            { text: '环境搭建与快速开始', link: '/quickstart' }
           ]
         }
       ],
