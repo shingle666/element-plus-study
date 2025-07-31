@@ -565,7 +565,7 @@ const newOrdersCount = ref(5)
 
 ## Related Components
 
-- [Breadcrumb](/en/navigation-components/Breadcrumb) - Breadcrumb navigation
-- [Tabs](/en/navigation-components/Tabs) - Tab navigation
-- [Steps](/en/navigation-components/Steps) - Step navigation
-- [Dropdown](/en/navigation-components/Dropdown) - Dropdown menus
+- [Breadcrumb](./breadcrumb.md) - Breadcrumb navigation
+- [Tabs](./tabs.md) - Tab navigation
+- [Steps](./steps.md) - Step navigation
+- [Dropdown](./dropdown.md) - Dropdown menus

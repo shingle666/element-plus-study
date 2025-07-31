@@ -561,7 +561,7 @@ The Alert component supports four types:
 
 ## Related Components
 
-- [Message](/en/feedback-components/Message) - Floating message notifications
-- [Notification](/en/feedback-components/Notification) - Desktop-style notifications
-- [Dialog](/en/feedback-components/Dialog) - Modal dialogs for important messages
-- [Popover](/en/feedback-components/Popover) - Contextual information popups
+- [Message](./message.md) - Floating message notifications
+- [Notification](./notification.md) - Desktop-style notifications
+- [Dialog](./dialog.md) - Modal dialogs for important messages
+- [Popover](./popover.md) - Contextual information popups

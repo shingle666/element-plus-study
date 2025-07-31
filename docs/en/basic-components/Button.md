@@ -451,10 +451,10 @@ const handleMouseLeave = () => {
 
 ## Next Steps
 
-- [Border Component](/en/basic-components/Border)
-- [Color System](/en/basic-components/Color)
-- [Layout Components](/en/basic-components/Layout)
-- [Form Components](/en/form-components/Input)
+- [Border Component](./border.md)
+- [Color System](./color.md)
+- [Layout Components](./layout.md)
+- [Form Components](../form-components/input.md)
 
 ---
 

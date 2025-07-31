@@ -459,7 +459,7 @@ const showProgress = (step, total) => {
 
 ## Related Components
 
-- [Alert](/en/feedback-components/Alert) - Static alert messages
-- [Notification](/en/feedback-components/Notification) - Desktop-style notifications
-- [Dialog](/en/feedback-components/Dialog) - Modal dialogs
-- [Loading](/en/feedback-components/Loading) - Loading indicators
+- [Alert](./alert.md) - Static alert messages
+- [Notification](./notification.md) - Desktop-style notifications
+- [Dialog](./dialog.md) - Modal dialogs
+- [Loading](./loading.md) - Loading indicators

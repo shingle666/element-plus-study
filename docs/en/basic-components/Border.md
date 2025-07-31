@@ -119,6 +119,6 @@ const showBorder = ref(true)
 
 ## Related Components
 
-- [Card](/en/data-display-components/Card) - Uses borders for container definition
-- [Input](/en/form-components/Input) - Border states for form validation
-- [Button](/en/basic-components/Button) - Border styling for different button types
+- [Card](../data-display-components/card.md) - Uses borders for container definition
+- [Input](../form-components/input.md) - Border states for form validation
+- [Button](./button.md) - Border styling for different button types

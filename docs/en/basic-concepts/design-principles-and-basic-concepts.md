@@ -261,10 +261,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 ## Next Steps
 
-- [Environment Setup & Quick Start](/en/quickstart)
-- [Basic Components](/en/basic-components/Button)
-- [Form Components](/en/form-components/Input)
-- [Architecture Design](/en/architecture-design/01.overall-architecture-and-design-philosophy)
+- [Environment Setup & Quick Start](../quickstart.md)
+- [Basic Components](../basic-components/button.md)
+- [Form Components](../form-components/input.md)
+- [Architecture Design](../architecture-design/overall-architecture-and-design-philosophy.md)
 
 ---
 

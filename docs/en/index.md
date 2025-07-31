@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /en/quickstart
+      link: ./quickstart.md
     - theme: alt
       text: Study Guide
-      link: /en/element-plus-study-guide
+      link: ./element-plus-study-guide.md
 
 features:
   - icon: 🎯
@@ -40,28 +40,28 @@ features:
 ## Quick Navigation
 
 ### 📋 Basic Learning
-- [🎯 Basic Concepts](/en/basic-concepts/design-principles-and-basic-concepts)
-- [🧩 Basic Components](/en/basic-components/button)
-- [📝 Form Components](/en/form-components/input)
-- [📊 Data Display](/en/data-display-components/table)
+- [🎯 Basic Concepts](./basic-concepts/design-principles-and-basic-concepts.md)
+- [🧩 Basic Components](./basic-components/button.md)
+- [📝 Form Components](./form-components/input.md)
+- [📊 Data Display](./data-display-components/table.md)
 
 ### 🏗️ Advanced Topics
-- [🏛️ Architecture Design](/en/architecture-design/overall-architecture-and-design-philosophy)
-- [⚡ Advanced Features](/en/advanced-features/comprehensive-practice)
-- [🎨 Advanced Topics](/en/advanced-topics/component-extension-and-customization)
-- [🚀 Performance Optimization](/en/performance-optimization/component-performance-analysis)
+- [🏛️ Architecture Design](./architecture-design/overall-architecture-and-design-philosophy.md)
+- [⚡ Advanced Features](./advanced-features/comprehensive-practice.md)
+- [🎨 Advanced Topics](./advanced-topics/component-extension-and-customization.md)
+- [🚀 Performance Optimization](./performance-optimization/component-performance-analysis.md)
 
 ### 🌐 Enterprise Applications
-- [🖥️ SSR Server Rendering](/en/ssr-server-side-rendering/basic-concepts-and-environment-setup)
-- [🌍 Internationalization](/en/internationalization-and-accessibility/internationalization-system-detailed)
-- [🔗 Vue Ecosystem Integration](/en/vue-ecosystem-integration/deep-integration-with-vue-router)
-- [⚙️ Engineering & Build](/en/engineering-and-build/build-system-deep-dive-vite-typescript)
+- [🖥️ SSR Server Rendering](./ssr-server-side-rendering/basic-concepts-and-environment-setup.md)
+- [🌍 Internationalization](./internationalization-and-accessibility/internationalization-system-detailed.md)
+- [🔗 Vue Ecosystem Integration](./vue-ecosystem-integration/deep-integration-with-vue-router.md)
+- [⚙️ Engineering & Build](./engineering-and-build/build-system-deep-dive-vite-typescript.md)
 
 ### 🤝 Practice & Contribution
-- [💼 Project Practice](/en/project-practice/comprehensive-project-practice-one)
-- [🔓 Open Source Contribution](/en/open-source-contribution/development-process-and-code-standards)
-- [👥 Community Contribution](/en/community-contribution/community-contribution-and-open-source-practice)
-- [📈 Summary & Planning](/en/summary-and-planning/learning-summary-and-advanced-planning)
+- [💼 Project Practice](./project-practice/comprehensive-project-practice-one.md)
+- [🔓 Open Source Contribution](./open-source-contribution/development-process-and-code-standards.md)
+- [👥 Community Contribution](./community-contribution/community-contribution-and-open-source-practice.md)
+- [📈 Summary & Planning](./summary-and-planning/learning-summary-and-advanced-planning.md)
 
 ---
 

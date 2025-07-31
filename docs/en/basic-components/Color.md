@@ -235,6 +235,6 @@ You can customize the color palette by overriding CSS variables:
 
 ## Related Components
 
-- [Button](/en/basic-components/Button) - Uses color system for different button types
-- [Alert](/en/feedback-components/Alert) - Implements functional colors for message types
-- [Tag](/en/data-display-components/Tag) - Utilizes color variations for categorization
+- [Button](./button.md) - Uses color system for different button types
+- [Alert](../feedback-components/alert.md) - Implements functional colors for message types
+- [Tag](../data-display-components/tag.md) - Utilizes color variations for categorization

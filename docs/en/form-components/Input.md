@@ -397,6 +397,6 @@ const textarea = ref('')
 
 ## Related Components
 
-- [Form](/en/form-components/Form) - Form container and validation
-- [Select](/en/form-components/Select) - Dropdown selection
-- [Autocomplete](/en/form-components/Autocomplete) - Input with suggestions
+- [Form](./form.md) - Form container and validation
+- [Select](./select.md) - Dropdown selection
+- [Autocomplete](./autocomplete.md) - Input with suggestions

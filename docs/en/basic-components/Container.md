@@ -327,6 +327,6 @@ const toggleSidebar = () => {
 
 ## Related Components
 
-- [Layout](/en/basic-components/Layout) - Grid-based layout system
-- [Space](/en/basic-components/Space) - Spacing utilities
-- [Divider](/en/other-components/Divider) - Visual separation elements
+- [Layout](./layout.md) - Grid-based layout system
+- [Space](./space.md) - Spacing utilities
+- [Divider](../other-components/divider.md) - Visual separation elements

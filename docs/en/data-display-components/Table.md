@@ -548,6 +548,6 @@ const tableData = [
 
 ## Related Components
 
-- [Pagination](/en/data-display-components/Pagination) - Table pagination
-- [Loading](/en/feedback-components/Loading) - Loading states
-- [Empty](/en/data-display-components/Empty) - Empty states
+- [Pagination](./pagination.md) - Table pagination
+- [Loading](../feedback-components/loading.md) - Loading states
+- [Empty](./empty.md) - Empty states
