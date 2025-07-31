@@ -252,6 +252,61 @@ yarn build
 4. **源码阅读** - 深入理解组件实现原理
 5. **社区参与** - 积极参与开源社区讨论
 
+## 📝 更新日志
+
+### 2024年12月 - 文档结构优化
+
+**🔄 中文文档目录结构标准化**
+
+为了提高项目的国际化水平和维护效率，我们对中文文档目录结构进行了重要调整：
+
+#### 主要变更
+
+- **文档分离**：将所有中文文档移动到 `docs/zh-CN/` 目录下
+- **目录重命名**：将中文目录名统一改为英文命名规范，与 `docs/en/` 保持一致
+- **结构优化**：删除根目录下重复的 `index.md` 和 `quickstart.md` 文件
+
+#### 目录重命名对照表
+
+| 原中文目录名 | 新英文目录名 | 说明 |
+|-------------|-------------|------|
+| SSR服务端渲染 | ssr-server-side-rendering | 服务端渲染相关文档 |
+| Vue生态集成 | vue-ecosystem-integration | Vue生态系统集成 |
+| 其他组件 | other-components | 其他类型组件 |
+| 反馈组件 | feedback-components | 用户反馈相关组件 |
+| 国际化与无障碍 | internationalization-and-accessibility | 国际化和无障碍功能 |
+| 基础概念 | basic-concepts | 基础概念和原理 |
+| 基础组件 | basic-components | 基础UI组件 |
+| 导航组件 | navigation-components | 导航相关组件 |
+| 工程化与构建 | engineering-and-build | 工程化和构建工具 |
+| 开源贡献 | open-source-contribution | 开源项目贡献指南 |
+| 性能优化 | performance-optimization | 性能优化策略 |
+| 总结与规划 | summary-and-planning | 学习总结和规划 |
+| 数据展示组件 | data-display-components | 数据展示相关组件 |
+| 架构设计 | architecture-design | 架构设计原理 |
+| 社区贡献 | community-contribution | 社区参与和贡献 |
+| 表单组件 | form-components | 表单相关组件 |
+| 跨平台开发 | cross-platform-development | 跨平台开发实践 |
+| 配置组件 | configuration-components | 配置相关组件 |
+| 项目实践 | project-practice | 项目实战练习 |
+| 高级主题 | advanced-topics | 高级开发主题 |
+| 高级特性 | advanced-features | 高级功能特性 |
+
+#### 优化效果
+
+- ✅ **统一命名规范**：中英文文档目录结构完全一致
+- ✅ **提升维护效率**：便于自动化工具处理和CI/CD集成
+- ✅ **增强国际化支持**：为多语言文档奠定基础
+- ✅ **改善开发体验**：目录结构更加清晰和专业
+
+#### 影响说明
+
+- 📁 所有中文文档路径已更新，原有链接可能需要调整
+- 🔗 文档内部引用链接已自动适配新的目录结构
+- 📚 文档内容保持不变，仅目录结构进行了优化
+
+---
+
 ## 🤝 贡献指南
 
 我们欢迎所有形式的贡献，包括但不限于：
