@@ -256,15 +256,17 @@ yarn build
 
 ### 2024年12月 - 文档结构优化
 
-**🔄 中文文档目录结构标准化**
+**🔄 文档目录结构全面标准化**
 
-为了提高项目的国际化水平和维护效率，我们对中文文档目录结构进行了重要调整：
+为了提高项目的国际化水平和维护效率，我们对文档目录结构进行了全面的标准化调整：
 
 #### 主要变更
 
-- **文档分离**：将所有中文文档移动到 `docs/zh-CN/` 目录下
+- **文档分离**：将所有中文文档移动到 `docs/zh-cn/` 目录下
 - **目录重命名**：将中文目录名统一改为英文命名规范，与 `docs/en/` 保持一致
 - **结构优化**：删除根目录下重复的 `index.md` 和 `quickstart.md` 文件
+- **文件名规范化**：移除所有英文文档文件名中的序号前缀（如 `01.`、`02.` 等）
+- **文件夹合并**：将 `ssr-server-rendering` 文件夹合并到 `ssr-server-side-rendering` 中
 
 #### 目录重命名对照表
 
@@ -292,18 +294,34 @@ yarn build
 | 高级主题 | advanced-topics | 高级开发主题 |
 | 高级特性 | advanced-features | 高级功能特性 |
 
+#### 文件名规范化详情
+
+**移除序号前缀**：所有英文文档文件名已移除数字序号前缀，例如：
+- `01.comprehensive-practice.md` → `comprehensive-practice.md`
+- `02.component-extension-and-customization.md` → `component-extension-and-customization.md`
+- `10.advanced-features-comprehensive-project-practice.md` → `advanced-features-comprehensive-project-practice.md`
+
+**文件夹合并**：
+- 将 `ssr-server-rendering` 中的文件合并到 `ssr-server-side-rendering`
+- 删除重复文件，保留内容更完整的版本
+- 统一SSR相关文档的存放位置
+
 #### 优化效果
 
 - ✅ **统一命名规范**：中英文文档目录结构完全一致
 - ✅ **提升维护效率**：便于自动化工具处理和CI/CD集成
 - ✅ **增强国际化支持**：为多语言文档奠定基础
 - ✅ **改善开发体验**：目录结构更加清晰和专业
+- ✅ **简化文件管理**：移除序号前缀，文件名更加语义化
+- ✅ **避免重复内容**：合并相关文件夹，减少维护成本
 
 #### 影响说明
 
 - 📁 所有中文文档路径已更新，原有链接可能需要调整
 - 🔗 文档内部引用链接已自动适配新的目录结构
-- 📚 文档内容保持不变，仅目录结构进行了优化
+- 📚 文档内容保持不变，仅目录结构和文件名进行了优化
+- 📝 英文文档文件名已全部标准化，移除序号前缀
+- 🗂️ SSR相关文档已合并，统一管理
 
 ---
 
