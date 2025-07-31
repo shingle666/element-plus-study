@@ -57,13 +57,11 @@ export default defineConfig({
   vite: {
     // ... 其他配置
     build: {
-      chunkSizeWarningLimit: 1000, // 提高 chunk 大小警告阈值
+      chunkSizeWarningLimit: 1500, // 提高 chunk 大小警告阈值
       rollupOptions: {
         output: {
           manualChunks: {
-            'element-plus': ['element-plus'],
-            'vue': ['vue'],
-            'vue-router': ['vue-router']
+            'element-plus': ['element-plus']
           }
         }
       }
@@ -73,9 +71,21 @@ export default defineConfig({
 ```
 
 **优化说明**：
-- **手动分块**：将大型依赖分离到独立的 chunk
+- **手动分块**：仅对 element-plus 进行分块，避免外部模块冲突
 - **减少主 bundle 大小**：提高加载性能
 - **提高警告阈值**：减少不必要的警告信息
+
+### 3. 修复 manualChunks 配置错误
+
+**问题**：初始配置中包含了 `vue` 和 `vue-router`，但这些模块被 VitePress 标记为外部依赖，导致构建失败：
+```
+"vue" cannot be included in manualChunks because it is resolved as an external module
+```
+
+**解决方案**：
+- 移除 `vue` 和 `vue-router` 的 manualChunks 配置
+- 仅保留 `element-plus` 的分块配置
+- 调整 `chunkSizeWarningLimit` 到 1500KB 以适应实际情况
 
 ## 预期效果
 

@@ -2,6 +2,17 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh-CN'
+    },
+    en: {
+      label: 'English',
+      lang: 'en-US',
+      link: '/en/'
+    }
+  },
   vite: {
     ssr: {
       noExternal: ['element-plus']
@@ -10,13 +21,11 @@ export default defineConfig({
       include: ['element-plus']
     },
     build: {
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
           manualChunks: {
-            'element-plus': ['element-plus'],
-            'vue': ['vue'],
-            'vue-router': ['vue-router']
+            'element-plus': ['element-plus']
           }
         }
       }
@@ -36,9 +45,14 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: 'Element Plus 学习宝典',
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
+    
+    locales: {
+      root: {
+         label: '简体中文',
+         selectText: '选择语言',
+         ariaLabel: '选择语言',
+         editLinkText: '在 GitHub 上编辑此页面',
+        nav: [
       { text: '🏠 首页', link: '/' },
       { text: '📚 学习宝典', link: '/Element Plus学习宝典' },
       { text: '📝 更新日志', link: '/changelog' },
@@ -85,7 +99,7 @@ export default defineConfig({
       }
     ],
 
-    sidebar: {
+        sidebar: {
       '/基础概念/': [
         {
           text: '基础概念',
@@ -413,46 +427,162 @@ export default defineConfig({
       ]
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' },
-      { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
-    ],
+        socialLinks: [
+          { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' },
+          { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
+        ],
 
-    search: {
-      provider: 'local'
-    },
+        search: {
+          provider: 'local'
+        },
 
-    editLink: {
-      pattern: 'https://github.com/shingle666/element-plus-study/edit/main/docs/:path',
-      text: '在 GitHub 上编辑此页面'
-    },
+        editLink: {
+          pattern: 'https://github.com/shingle666/element-plus-study/edit/main/docs/:path',
+          text: '在 GitHub 上编辑此页面'
+        },
 
-    lastUpdated: {
-      text: '最后更新于',
-      formatOptions: {
-        dateStyle: 'short',
-        timeStyle: 'medium'
+
+
+        docFooter: {
+          prev: '上一页',
+          next: '下一页'
+        },
+
+        outline: {
+          label: '页面导航'
+        },
+
+        returnToTopLabel: '回到顶部',
+        sidebarMenuLabel: '菜单',
+        darkModeSwitchLabel: '主题',
+        lightModeSwitchTitle: '切换到浅色模式',
+        darkModeSwitchTitle: '切换到深色模式',
+
+        footer: {
+          message: 'Element Plus 学习红宝书',
+          copyright: 'Copyright © 2025 edlo.cn - Element Plus Study Guide'
+        }
+      },
+
+      en: {
+         label: 'English',
+         selectText: 'Languages',
+         ariaLabel: 'Select language',
+         editLinkText: 'Edit this page on GitHub',
+        nav: [
+          { text: '🏠 Home', link: '/en/' },
+          { text: '📚 Study Guide', link: '/en/Element Plus Study Guide' },
+          { text: '📝 Changelog', link: '/en/changelog' },
+          {
+            text: '📋 Basic Learning',
+            items: [
+              { text: '🎯 Basic Concepts', link: '/en/basic-concepts/01.design-principles-and-basic-concepts' },
+              { text: '🧩 Basic Components', link: '/en/basic-components/Button' },
+              { text: '📝 Form Components', link: '/en/form-components/Input' },
+              { text: '📊 Data Display', link: '/en/data-display-components/Table' },
+              { text: '🧭 Navigation', link: '/en/navigation-components/Menu' },
+              { text: '💬 Feedback', link: '/en/feedback-components/Alert' },
+              { text: '⚙️ Configuration', link: '/en/config-components/Config Provider' },
+              { text: '🔧 Others', link: '/en/other-components/01.layout-and-container-advanced' }
+            ]
+          },
+          {
+            text: '🏗️ Architecture',
+            items: [
+              { text: '🏛️ Architecture Design', link: '/en/architecture-design/01.overall-architecture-and-design-philosophy' },
+              { text: '⚡ Advanced Features', link: '/en/advanced-features/01.comprehensive-practice' },
+              { text: '🎨 Advanced Topics', link: '/en/advanced-topics/01.component-extension-and-customization' },
+              { text: '🚀 Performance Optimization', link: '/en/performance-optimization/01.component-performance-analysis' }
+            ]
+          },
+          {
+            text: '🌐 Enterprise Applications',
+            items: [
+              { text: '🖥️ SSR Rendering', link: '/en/ssr-server-rendering/01.basic-concepts-and-environment-setup' },
+              { text: '🌍 Internationalization', link: '/en/internationalization-and-accessibility/01.internationalization-system-detailed' },
+              { text: '🔗 Vue Ecosystem', link: '/en/vue-ecosystem-integration/01.deep-integration-with-vue-router' },
+              { text: '⚙️ Engineering', link: '/en/engineering-and-build/01.build-system-deep-vite-typescript' },
+              { text: '📱 Cross-platform', link: '/en/cross-platform-development/01.cross-platform-development-practice' }
+            ]
+          },
+          {
+            text: '🤝 Contribution & Practice',
+            items: [
+              { text: '💼 Project Practice', link: '/en/project-practice/01.comprehensive-project-practice-one' },
+              { text: '🔓 Open Source Contribution', link: '/en/open-source-contribution/01.development-process-and-code-standards' },
+              { text: '👥 Community Contribution', link: '/en/community-contribution/01.community-contribution-and-open-source-practice' },
+              { text: '📈 Summary & Planning', link: '/en/summary-and-planning/01.learning-summary-and-advanced-planning' }
+            ]
+          }
+        ],
+
+        sidebar: {
+          '/en/basic-concepts/': [
+            {
+              text: 'Basic Concepts',
+              items: [
+                { text: 'Design Principles & Basic Concepts', link: '/en/basic-concepts/01.design-principles-and-basic-concepts' },
+                { text: 'Environment Setup & Quick Start', link: '/en/quickstart' }
+              ]
+            }
+          ],
+          '/en/basic-components/': [
+            {
+              text: 'Basic Components',
+              items: [
+                { text: 'Button', link: '/en/basic-components/Button' },
+                { text: 'Border', link: '/en/basic-components/Border' },
+                { text: 'Color', link: '/en/basic-components/Color' },
+                { text: 'Container', link: '/en/basic-components/Container' },
+                { text: 'Layout', link: '/en/basic-components/Layout' },
+                { text: 'Space', link: '/en/basic-components/Space' },
+                { text: 'Text', link: '/en/basic-components/Text' },
+                { text: 'Link', link: '/en/basic-components/Link' },
+                { text: 'Typography', link: '/en/basic-components/Typography' },
+                { text: 'Icon', link: '/en/basic-components/Icon' },
+                { text: 'Scrollbar', link: '/en/basic-components/Scrollbar' },
+                { text: 'Splitter', link: '/en/basic-components/Splitter' }
+              ]
+            }
+          ]
+        },
+
+        socialLinks: [
+          { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' },
+          { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
+        ],
+
+        search: {
+          provider: 'local'
+        },
+
+        editLink: {
+          pattern: 'https://github.com/shingle666/element-plus-study/edit/main/docs/:path',
+          text: 'Edit this page on GitHub'
+        },
+
+
+
+        docFooter: {
+          prev: 'Previous',
+          next: 'Next'
+        },
+
+        outline: {
+          label: 'On this page'
+        },
+
+        returnToTopLabel: 'Return to top',
+        sidebarMenuLabel: 'Menu',
+        darkModeSwitchLabel: 'Theme',
+        lightModeSwitchTitle: 'Switch to light theme',
+        darkModeSwitchTitle: 'Switch to dark theme',
+
+        footer: {
+          message: 'Element Plus Study Guide',
+          copyright: 'Copyright © 2025 edlo.cn - Element Plus Study Guide'
+        }
       }
-    },
-
-    docFooter: {
-      prev: '上一页',
-      next: '下一页'
-    },
-
-    outline: {
-      label: '页面导航'
-    },
-
-    returnToTopLabel: '回到顶部',
-    sidebarMenuLabel: '菜单',
-    darkModeSwitchLabel: '主题',
-    lightModeSwitchTitle: '切换到浅色模式',
-    darkModeSwitchTitle: '切换到深色模式',
-
-    footer: {
-      message: 'Element Plus 学习红宝书',
-      copyright: 'Copyright © 2025 edlo.cn - Element Plus Study Guide'
     }
   }
 })
