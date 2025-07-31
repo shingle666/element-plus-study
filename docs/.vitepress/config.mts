@@ -7,6 +7,11 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   
+  // Sitemap 配置
+  sitemap: {
+    hostname: 'https://edlo.cn'
+  },
+  
   // 多语言配置
   locales: {
     root: {
@@ -62,13 +67,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     
-    locales: {
-      root: {
-         label: '简体中文',
-         selectText: '选择语言',
-         ariaLabel: '选择语言',
-         editLinkText: '在 GitHub 上编辑此页面',
-        nav: [
+    nav: [
       { text: '🏠 首页', link: '/' },
       { text: '📚 学习宝典', link: '/zh-cn/element-plus-study-guide' },
       { text: '📝 更新日志', link: '/zh-cn/changelog' },
@@ -114,6 +113,13 @@ export default defineConfig({
         ]
       }
     ],
+    
+    locales: {
+      root: {
+         label: '简体中文',
+         selectText: '选择语言',
+         ariaLabel: '选择语言',
+         editLinkText: '在 GitHub 上编辑此页面',
 
         sidebar: {
       '/basic-concepts/': [
@@ -492,6 +498,7 @@ export default defineConfig({
          selectText: 'Languages',
          ariaLabel: 'Select language',
          editLinkText: 'Edit this page on GitHub',
+
         nav: [
           { text: '🏠 Home', link: '/en/' },
           { text: '📚 Study Guide', link: '/en/element-plus-study-guide' },
@@ -503,10 +510,10 @@ export default defineConfig({
               { text: '🧩 Basic Components', link: '/en/basic-components/button' },
               { text: '📝 Form Components', link: '/en/form-components/input' },
               { text: '📊 Data Display', link: '/en/data-display-components/table' },
-              { text: '🧭 Navigation', link: '/en/navigation-components/menu' },
-              { text: '💬 Feedback', link: '/en/feedback-components/alert' },
-              { text: '⚙️ Configuration', link: '/en/components/config-provider' },
-              { text: '🔧 Others', link: '/en/other-components/divider' }
+              { text: '🧭 Navigation Components', link: '/en/navigation-components/menu' },
+              { text: '💬 Feedback Components', link: '/en/feedback-components/alert' },
+              { text: '⚙️ Configuration Components', link: '/en/configuration-components/config-provider' },
+              { text: '🔧 Other Components', link: '/en/other-components/layout-and-container-advanced' }
             ]
           },
           {
@@ -522,10 +529,10 @@ export default defineConfig({
             text: '🌐 Enterprise Applications',
             items: [
               { text: '🖥️ SSR Rendering', link: '/en/ssr-server-side-rendering/basic-concepts-and-environment-setup' },
-              { text: '🌍 Internationalization', link: '/en/internationalization-and-accessibility/internationalization-system-detailed' },
+              { text: '🌍 Internationalization & Accessibility', link: '/en/internationalization-and-accessibility/internationalization-system-detailed' },
               { text: '🔗 Vue Ecosystem', link: '/en/vue-ecosystem-integration/deep-integration-with-vue-router' },
-              { text: '⚙️ Engineering', link: '/en/engineering-and-build/build-system-deep-vite-typescript' },
-              { text: '📱 Cross-platform', link: '/en/cross-platform-development/cross-platform-development-practice' }
+              { text: '⚙️ Engineering & Build', link: '/en/engineering-and-build/build-system-deep-dive-vite-typescript' },
+              { text: '📱 Cross-platform Development', link: '/en/cross-platform-development/cross-platform-development-practice' }
             ]
           },
           {

@@ -14,7 +14,7 @@ hero:
       link: /en/quickstart
     - theme: alt
       text: Study Guide
-      link: /en/Element Plus Study Guide
+      link: /en/element-plus-study-guide
 
 features:
   - icon: 🎯
@@ -40,28 +40,28 @@ features:
 ## Quick Navigation
 
 ### 📋 Basic Learning
-- [🎯 Basic Concepts](/en/basic-concepts/01.design-principles-and-basic-concepts)
-- [🧩 Basic Components](/en/basic-components/Button)
-- [📝 Form Components](/en/form-components/Input)
-- [📊 Data Display](/en/data-display-components/Table)
+- [🎯 Basic Concepts](/en/basic-concepts/design-principles-and-basic-concepts)
+- [🧩 Basic Components](/en/basic-components/button)
+- [📝 Form Components](/en/form-components/input)
+- [📊 Data Display](/en/data-display-components/table)
 
 ### 🏗️ Advanced Topics
-- [🏛️ Architecture Design](/en/architecture-design/01.overall-architecture-and-design-philosophy)
-- [⚡ Advanced Features](/en/advanced-features/01.comprehensive-practice)
-- [🎨 Advanced Topics](/en/advanced-topics/01.component-extension-and-customization)
-- [🚀 Performance Optimization](/en/performance-optimization/01.component-performance-analysis)
+- [🏛️ Architecture Design](/en/architecture-design/overall-architecture-and-design-philosophy)
+- [⚡ Advanced Features](/en/advanced-features/comprehensive-practice)
+- [🎨 Advanced Topics](/en/advanced-topics/component-extension-and-customization)
+- [🚀 Performance Optimization](/en/performance-optimization/component-performance-analysis)
 
 ### 🌐 Enterprise Applications
-- [🖥️ SSR Server Rendering](/en/ssr-server-rendering/01.basic-concepts-and-environment-setup)
-- [🌍 Internationalization](/en/internationalization-and-accessibility/01.internationalization-system-detailed)
-- [🔗 Vue Ecosystem Integration](/en/vue-ecosystem-integration/01.deep-integration-with-vue-router)
-- [⚙️ Engineering & Build](/en/engineering-and-build/01.build-system-deep-vite-typescript)
+- [🖥️ SSR Server Rendering](/en/ssr-server-side-rendering/basic-concepts-and-environment-setup)
+- [🌍 Internationalization](/en/internationalization-and-accessibility/internationalization-system-detailed)
+- [🔗 Vue Ecosystem Integration](/en/vue-ecosystem-integration/deep-integration-with-vue-router)
+- [⚙️ Engineering & Build](/en/engineering-and-build/build-system-deep-dive-vite-typescript)
 
 ### 🤝 Practice & Contribution
-- [💼 Project Practice](/en/project-practice/01.comprehensive-project-practice-one)
-- [🔓 Open Source Contribution](/en/open-source-contribution/01.development-process-and-code-standards)
-- [👥 Community Contribution](/en/community-contribution/01.community-contribution-and-open-source-practice)
-- [📈 Summary & Planning](/en/summary-and-planning/01.learning-summary-and-advanced-planning)
+- [💼 Project Practice](/en/project-practice/comprehensive-project-practice-one)
+- [🔓 Open Source Contribution](/en/open-source-contribution/development-process-and-code-standards)
+- [👥 Community Contribution](/en/community-contribution/community-contribution-and-open-source-practice)
+- [📈 Summary & Planning](/en/summary-and-planning/learning-summary-and-advanced-planning)
 
 ---
 

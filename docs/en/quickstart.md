@@ -134,10 +134,10 @@ export default {
 
 ## Next Steps
 
-- [📚 Study Guide](/en/Element Plus Study Guide) - Start systematic learning
-- [🎯 Basic Concepts](/en/basic-concepts/01.design-principles-and-basic-concepts) - Understand design principles
-- [🧩 Basic Components](/en/basic-components/Button) - Learn basic components
-- [📝 Form Components](/en/form-components/Input) - Master form components
+- [📚 Study Guide](/en/element-plus-study-guide) - Start systematic learning
+- [🎯 Basic Concepts](/en/basic-concepts/design-principles-and-basic-concepts) - Understand design principles
+- [🧩 Basic Components](/en/basic-components/button) - Learn basic components
+- [📝 Form Components](/en/form-components/input) - Master form components
 
 ---
 

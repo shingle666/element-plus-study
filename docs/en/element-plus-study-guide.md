@@ -9,7 +9,7 @@ Welcome to the **Element Plus Study Guide**! This is a comprehensive learning re
 ### Phase 1: Foundation (Weeks 1-2)
 
 #### 🎯 Basic Concepts
-- [Design Principles & Basic Concepts](/en/basic-concepts/01.design-principles-and-basic-concepts)
+- [Design Principles & Basic Concepts](/en/basic-concepts/design-principles-and-basic-concepts)
 - [Environment Setup & Quick Start](/en/quickstart)
 
 #### 🧩 Component Mastery
@@ -22,42 +22,42 @@ Welcome to the **Element Plus Study Guide**! This is a comprehensive learning re
 ### Phase 2: Advanced Features (Weeks 3-4)
 
 #### 🏗️ Architecture & Design
-- [Overall Architecture & Design Philosophy](/en/architecture-design/01.overall-architecture-and-design-philosophy)
-- [Component Design Patterns](/en/architecture-design/02.component-design-pattern-analysis)
-- [Vue 3 Composition API Application](/en/architecture-design/03.vue3-composition-api-application)
+- [Overall Architecture & Design Philosophy](/en/architecture-design/overall-architecture-and-design-philosophy)
+- [Component Design Patterns](/en/architecture-design/component-design-pattern-analysis)
+- [Vue 3 Composition API Application](/en/architecture-design/vue3-composition-api-application)
 
 #### ⚡ Advanced Features
-- [Plugin System](/en/advanced-features/02.plugin-system-deep)
-- [Theme Customization](/en/advanced-features/03.advanced-theme-customization-and-design-system)
-- [Component Extension](/en/advanced-topics/01.component-extension-and-customization)
+- [Plugin System](/en/advanced-features/plugin-system-deep)
+- [Theme Customization](/en/advanced-features/advanced-theme-customization-and-design-system)
+- [Component Extension](/en/advanced-topics/component-extension-and-customization)
 
 #### 🚀 Performance Optimization
-- [Component Performance Analysis](/en/performance-optimization/01.component-performance-analysis)
-- [Table Large Data Optimization](/en/performance-optimization/02.table-component-large-data-optimization)
-- [Virtual Scrolling](/en/performance-optimization/03.select-component-large-options-optimization)
+- [Component Performance Analysis](/en/performance-optimization/component-performance-analysis)
+- [Table Large Data Optimization](/en/performance-optimization/table-component-large-data-optimization)
+- [Virtual Scrolling](/en/performance-optimization/select-component-large-options-optimization)
 
 ### Phase 3: Enterprise Applications (Weeks 5-6)
 
 #### 🌐 Internationalization
-- [Internationalization System](/en/internationalization-and-accessibility/01.internationalization-system-detailed)
-- [Multi-language Switching](/en/internationalization-and-accessibility/02.multi-language-switching-implementation-and-dynamic-configuration)
-- [RTL Layout Support](/en/internationalization-and-accessibility/03.rtl-right-to-left-layout-support)
+- [Internationalization System](/en/internationalization-and-accessibility/internationalization-system-detailed)
+- [Multi-language Switching](/en/internationalization-and-accessibility/multi-language-switching-implementation-and-dynamic-configuration)
+- [RTL Layout Support](/en/internationalization-and-accessibility/rtl-right-to-left-layout-support)
 
 #### 🖥️ SSR & Engineering
-- [SSR Server Rendering](/en/ssr-server-rendering/01.basic-concepts-and-environment-setup)
-- [Nuxt.js Integration](/en/ssr-server-rendering/02.nuxtjs-integration-and-configuration)
-- [Build System & TypeScript](/en/engineering-and-build/01.build-system-deep-vite-typescript)
+- [SSR Server Rendering](/en/ssr-server-side-rendering/basic-concepts-and-environment-setup)
+- [Nuxt.js Integration](/en/ssr-server-side-rendering/nuxtjs-integration-and-configuration)
+- [Build System & TypeScript](/en/engineering-and-build/build-system-deep-dive-vite-typescript)
 
 #### 🔗 Ecosystem Integration
-- [Vue Router Integration](/en/vue-ecosystem-integration/01.deep-integration-with-vue-router)
-- [Pinia State Management](/en/vue-ecosystem-integration/02.pinia-state-management)
-- [Cross-platform Development](/en/cross-platform-development/01.cross-platform-development-practice)
+- [Vue Router Integration](/en/vue-ecosystem-integration/deep-integration-with-vue-router)
+- [Pinia State Management](/en/vue-ecosystem-integration/pinia-state-management)
+- [Cross-platform Development](/en/cross-platform-development/cross-platform-development-practice)
 
 ### Phase 4: Practice & Contribution (Weeks 7-8)
 
 #### 💼 Project Practice
-- [Comprehensive Project Practice 1](/en/project-practice/01.comprehensive-project-practice-one)
-- [Comprehensive Project Practice 2](/en/project-practice/02.comprehensive-project-practice-two)
+- [Comprehensive Project Practice 1](/en/project-practice/comprehensive-project-practice-one)
+- [Comprehensive Project Practice 2](/en/project-practice/comprehensive-project-practice-two)
 - [Advanced Features Project Practice](/en/project-practice/10.advanced-features-comprehensive-project-practice)
 
 #### 🤝 Open Source Contribution

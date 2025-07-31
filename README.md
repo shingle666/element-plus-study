@@ -95,7 +95,7 @@ element-plus-study/
 
 ```bash
 # 克隆项目
-git clone https://github.com/shingle666/element-plus-study.git
+git clone https://cnb.cool/zxui/element-plus-study.git
 cd element-plus-study
 
 # 安装依赖
