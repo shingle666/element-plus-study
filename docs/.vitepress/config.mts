@@ -8,6 +8,18 @@ export default defineConfig({
     },
     optimizeDeps: {
       include: ['element-plus']
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'element-plus': ['element-plus'],
+            'vue': ['vue'],
+            'vue-router': ['vue-router']
+          }
+        }
+      }
     }
   },
   title: "Element Plus 学习宝典",
