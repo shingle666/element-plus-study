@@ -47,27 +47,29 @@
 element-plus-study/
 ├── 📄 README.md                     # 项目说明文档
 ├── 📚 docs/                         # 学习文档目录
-│   ├── 🎯 基础概念/                  # 设计原则与基础概念
-│   ├── 🧩 基础组件/                  # Button、Layout、Icon 等
-│   ├── 📝 表单组件/                  # Input、Select、Form 等
-│   ├── 📊 数据展示组件/              # Table、Tree、Card 等
-│   ├── 🧭 导航组件/                  # Menu、Breadcrumb、Tabs 等
-│   ├── 💬 反馈组件/                  # Dialog、Message、Loading 等
-│   ├── ⚙️ 配置组件/                  # Config Provider 全局配置等
-│   ├── 🔧 其他组件/                  # 布局容器、工具类组件等
-│   ├── 🏛️ 架构设计/                  # 整体架构与设计理念
-│   ├── ⚡ 高级特性/                  # 高级组件模式与实践
-│   ├── 🎨 高级主题/                  # 主题定制与暗黑模式
-│   ├── 🚀 性能优化/                  # 组件性能分析与优化
-│   ├── 🖥️ SSR服务端渲染/             # 服务端渲染配置与优化
-│   ├── 🌍 国际化与无障碍/            # 多语言与无障碍设计
-│   ├── 🔗 Vue生态集成/               # Router、Pinia 等集成
-│   ├── ⚙️ 工程化与构建/              # Vite、TypeScript、测试
-│   ├── 📱 跨平台开发/                # 移动端适配与桌面应用
-│   ├── 💼 项目实践/                  # 综合项目实战
-│   ├── 🔓 开源贡献/                  # 开发流程与代码规范
-│   ├── 👥 社区贡献/                  # 社区参与与维护
-│   └── 📈 总结与规划/                # 学习总结与进阶规划
+│   ├── 🇨🇳 zh-cn/                   # 中文文档
+│   │   ├── 🎯 基础概念/              # 设计原则与基础概念
+│   │   ├── 🧩 基础组件/              # Button、Layout、Icon 等
+│   │   ├── 📝 表单组件/              # Input、Select、Form 等
+│   │   ├── 📊 数据展示组件/          # Table、Tree、Card 等
+│   │   ├── 🧭 导航组件/              # Menu、Breadcrumb、Tabs 等
+│   │   ├── 💬 反馈组件/              # Dialog、Message、Loading 等
+│   │   ├── ⚙️ 配置组件/              # Config Provider 全局配置等
+│   │   ├── 🔧 其他组件/              # 布局容器、工具类组件等
+│   │   ├── 🏛️ 架构设计/              # 整体架构与设计理念
+│   │   ├── ⚡ 高级特性/              # 高级组件模式与实践
+│   │   ├── 🎨 高级主题/              # 主题定制与暗黑模式
+│   │   ├── 🚀 性能优化/              # 组件性能分析与优化
+│   │   ├── 🖥️ SSR服务端渲染/         # 服务端渲染配置与优化
+│   │   ├── 🌍 国际化与无障碍/        # 多语言与无障碍设计
+│   │   ├── 🔗 Vue生态集成/           # Router、Pinia 等集成
+│   │   ├── ⚙️ 工程化与构建/          # Vite、TypeScript、测试
+│   │   ├── 📱 跨平台开发/            # 移动端适配与桌面应用
+│   │   ├── 💼 项目实践/              # 综合项目实战
+│   │   ├── 🔓 开源贡献/              # 开发流程与代码规范
+│   │   ├── 👥 社区贡献/              # 社区参与与维护
+│   │   └── 📈 总结与规划/            # 学习总结与进阶规划
+│   └── 🇺🇸 en/                      # 英文文档
 ├── 🛠️ src/                          # 示例代码目录
 │   ├── App.vue                     # 主应用组件
 │   ├── main.js                     # 应用入口文件
@@ -93,7 +95,7 @@ element-plus-study/
 
 ```bash
 # 克隆项目
-git clone https://github.com/shingle666/element-plus-study.git
+git clone https://cnb.cool/zxui/element-plus-study.git
 cd element-plus-study
 
 # 安装依赖
@@ -254,74 +256,25 @@ yarn build
 
 ## 📝 更新日志
 
-### 2024年12月 - 文档结构优化
+### 2024年12月 - 项目结构调整
 
-**🔄 文档目录结构全面标准化**
+**🔄 文档目录结构优化**
 
-为了提高项目的国际化水平和维护效率，我们对文档目录结构进行了全面的标准化调整：
+为了更好地组织学习内容和提升用户体验，我们对项目文档结构进行了优化：
 
 #### 主要变更
 
-- **文档分离**：将所有中文文档移动到 `docs/zh-cn/` 目录下
-- **目录重命名**：将中文目录名统一改为英文命名规范，与 `docs/en/` 保持一致
-- **结构优化**：删除根目录下重复的 `index.md` 和 `quickstart.md` 文件
-- **文件名规范化**：移除所有英文文档文件名中的序号前缀（如 `01.`、`02.` 等）
-- **文件夹合并**：将 `ssr-server-rendering` 文件夹合并到 `ssr-server-side-rendering` 中
-
-#### 目录重命名对照表
-
-| 原中文目录名 | 新英文目录名 | 说明 |
-|-------------|-------------|------|
-| SSR服务端渲染 | ssr-server-side-rendering | 服务端渲染相关文档 |
-| Vue生态集成 | vue-ecosystem-integration | Vue生态系统集成 |
-| 其他组件 | other-components | 其他类型组件 |
-| 反馈组件 | feedback-components | 用户反馈相关组件 |
-| 国际化与无障碍 | internationalization-and-accessibility | 国际化和无障碍功能 |
-| 基础概念 | basic-concepts | 基础概念和原理 |
-| 基础组件 | basic-components | 基础UI组件 |
-| 导航组件 | navigation-components | 导航相关组件 |
-| 工程化与构建 | engineering-and-build | 工程化和构建工具 |
-| 开源贡献 | open-source-contribution | 开源项目贡献指南 |
-| 性能优化 | performance-optimization | 性能优化策略 |
-| 总结与规划 | summary-and-planning | 学习总结和规划 |
-| 数据展示组件 | data-display-components | 数据展示相关组件 |
-| 架构设计 | architecture-design | 架构设计原理 |
-| 社区贡献 | community-contribution | 社区参与和贡献 |
-| 表单组件 | form-components | 表单相关组件 |
-| 跨平台开发 | cross-platform-development | 跨平台开发实践 |
-| 配置组件 | configuration-components | 配置相关组件 |
-| 项目实践 | project-practice | 项目实战练习 |
-| 高级主题 | advanced-topics | 高级开发主题 |
-| 高级特性 | advanced-features | 高级功能特性 |
-
-#### 文件名规范化详情
-
-**移除序号前缀**：所有英文文档文件名已移除数字序号前缀，例如：
-- `01.comprehensive-practice.md` → `comprehensive-practice.md`
-- `02.component-extension-and-customization.md` → `component-extension-and-customization.md`
-- `10.advanced-features-comprehensive-project-practice.md` → `advanced-features-comprehensive-project-practice.md`
-
-**文件夹合并**：
-- 将 `ssr-server-rendering` 中的文件合并到 `ssr-server-side-rendering`
-- 删除重复文件，保留内容更完整的版本
-- 统一SSR相关文档的存放位置
+- **多语言支持**：建立了 `docs/zh-cn/` 和 `docs/en/` 的双语文档结构
+- **内容完善**：补充和完善了各个组件的学习文档
+- **学习路径优化**：重新梳理了学习顺序和难度递进
+- **实践项目增强**：添加了更多实际应用场景的示例
 
 #### 优化效果
 
-- ✅ **统一命名规范**：中英文文档目录结构完全一致
-- ✅ **提升维护效率**：便于自动化工具处理和CI/CD集成
-- ✅ **增强国际化支持**：为多语言文档奠定基础
-- ✅ **改善开发体验**：目录结构更加清晰和专业
-- ✅ **简化文件管理**：移除序号前缀，文件名更加语义化
-- ✅ **避免重复内容**：合并相关文件夹，减少维护成本
-
-#### 影响说明
-
-- 📁 所有中文文档路径已更新，原有链接可能需要调整
-- 🔗 文档内部引用链接已自动适配新的目录结构
-- 📚 文档内容保持不变，仅目录结构和文件名进行了优化
-- 📝 英文文档文件名已全部标准化，移除序号前缀
-- 🗂️ SSR相关文档已合并，统一管理
+- ✅ **清晰的学习路径**：从基础到高级的完整学习体系
+- ✅ **丰富的实践项目**：理论与实践相结合的学习方式
+- ✅ **多语言文档**：支持中英文双语学习
+- ✅ **系统化内容**：覆盖 Element Plus 全部核心功能
 
 ---
 
@@ -359,8 +312,8 @@ yarn build
 ## 📞 联系我们
 
 - 📧 邮箱：info@edlo.cn
-- 🐛 问题反馈：[GitHub Issues](https://github.com/shingle666/element-plus-study/issues)
-- 💬 讨论交流：[GitHub Discussions](https://github.com/shingle666/element-plus-study/discussions)
+- 🐛 问题反馈：[项目Issues](https://cnb.cool/zxui/element-plus-study/issues)
+- 💬 讨论交流：[项目讨论区](https://cnb.cool/zxui/element-plus-study/discussions)
 
 ---
 
