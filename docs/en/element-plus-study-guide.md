@@ -46,7 +46,7 @@ Welcome to the **Element Plus Study Guide**! This is a comprehensive learning re
 #### 🖥️ SSR & Engineering
 - [SSR Server Rendering](./ssr-server-side-rendering/basic-concepts-and-environment-setup.md)
 - [Nuxt.js Integration](./ssr-server-side-rendering/nuxtjs-integration-and-configuration.md)
-- [Build System & TypeScript](./engineering-and-build/build-system-deep-dive-vite-typescript.md)
+- [Build System & TypeScript](./engineering-and-build/build-system-deep-vite-typescript.md)
 
 #### 🔗 Ecosystem Integration
 - [Vue Router Integration](./vue-ecosystem-integration/deep-integration-with-vue-router.md)
@@ -58,12 +58,12 @@ Welcome to the **Element Plus Study Guide**! This is a comprehensive learning re
 #### 💼 Project Practice
 - [Comprehensive Project Practice 1](./project-practice/comprehensive-project-practice-one.md)
 - [Comprehensive Project Practice 2](./project-practice/comprehensive-project-practice-two.md)
-- [Advanced Features Project Practice](./project-practice/10.advanced-features-comprehensive-project-practice.md)
+- [Advanced Features Project Practice](./project-practice/advanced-features-comprehensive-project-practice.md)
 
 #### 🤝 Open Source Contribution
-- [Development Process & Code Standards](./open-source-contribution/01.development-process-and-code-standards.md)
-- [Code Contribution & Pull Request Process](./open-source-contribution/02.code-contribution-and-pull-request-process.md)
-- [Community Participation](./community-contribution/01.community-contribution-and-open-source-practice.md)
+- [Development Process & Code Standards](./open-source-contribution/development-process-and-code-standards.md)
+- [Code Contribution & Pull Request Process](./open-source-contribution/code-contribution-and-pull-request-process.md)
+- [Community Participation](./community-contribution/community-contribution-and-open-source-practice.md)
 
 ## Learning Objectives
 

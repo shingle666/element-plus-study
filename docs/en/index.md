@@ -55,7 +55,7 @@ features:
 - [🖥️ SSR Server Rendering](./ssr-server-side-rendering/basic-concepts-and-environment-setup.md)
 - [🌍 Internationalization](./internationalization-and-accessibility/internationalization-system-detailed.md)
 - [🔗 Vue Ecosystem Integration](./vue-ecosystem-integration/deep-integration-with-vue-router.md)
-- [⚙️ Engineering & Build](./engineering-and-build/build-system-deep-dive-vite-typescript.md)
+- [⚙️ Engineering & Build](./engineering-and-build/build-system-deep-vite-typescript.md)
 
 ### 🤝 Practice & Contribution
 - [💼 Project Practice](./project-practice/comprehensive-project-practice-one.md)
