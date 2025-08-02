@@ -9,7 +9,7 @@ hero:
   text: Study Guide
   tagline: Deep Learning Plan for Mastering Component Library Development
   image:
-    src: /images/hero.png
+    src: /images/hero.svg
     alt: Element Plus Study Guide
   actions:
     - theme: brand

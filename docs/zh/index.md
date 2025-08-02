@@ -9,7 +9,7 @@ hero:
   text: 学习宝典
   tagline: 系统掌握组件库开发的深度学习计划
   image:
-    src: /images/hero.png
+    src: /images/hero.svg
     alt: Element Plus 学习宝典
   actions:
     - theme: brand
