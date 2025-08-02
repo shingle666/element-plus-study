@@ -4,7 +4,7 @@ export default {
   
   themeConfig: {
     nav: [
-      { text: '🏠 Home', link: '/en/' },
+      { text: '🏠 Home', link: '/' },
       { text: '📚 Study Guide', link: '/en/element-plus-study-guide' },
       { text: '📝 Changelog', link: '/en/changelog' },
       {

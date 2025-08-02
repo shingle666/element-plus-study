@@ -13,10 +13,7 @@ export default defineConfig({
   lastUpdated: true,
   
   // 路径重写规则
-  rewrites: {
-    // 首页重定向
-    '/': '/en/'
-  },
+  rewrites: {},
   
   // 多语言配置
   locales: {
