@@ -5,12 +5,26 @@ import { defineConfig } from 'vitepress'
 import enConfig from '../en/config.js'
 import zhConfig from '../zh/config.js'
 
+// 网站 URL
+const hostname = 'https://edlo.cn'
+
 export default defineConfig({
   // 基础配置
   title: 'Element Plus Study Guide',
   base: '/',
   cleanUrls: true,
   lastUpdated: true,
+  
+  // Sitemap 配置 - 使用 VitePress 内置的 sitemap 功能
+  sitemap: {
+    hostname,
+    // 添加额外的 URL
+    extraUrls: [
+      '/',
+      '/en/',
+      '/zh/'
+    ]
+  },
   
   // 路径重写规则
   rewrites: {

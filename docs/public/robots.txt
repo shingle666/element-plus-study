@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://edlo.cn/sitemap.xml
