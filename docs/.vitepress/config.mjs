@@ -12,12 +12,17 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   
+  // 路径重写规则
+  rewrites: {
+    // 首页重定向
+    '/': '/en/'
+  },
+  
   // 多语言配置
   locales: {
     root: {
       label: 'English',
       lang: 'en-US',
-      link: '/en/',
       ...enConfig
     },
     zh: {
@@ -57,6 +62,9 @@ export default defineConfig({
   // 主题配置
   themeConfig: {
     logo: '/logo.svg',
+    
+    // 语言切换路径映射
+    i18nRouting: false,
     
     // 社交链接
     socialLinks: [

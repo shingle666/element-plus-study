@@ -14,10 +14,13 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /en/element-plus-study-guide
+      link: /element-plus-study-guide
     - theme: alt
       text: View on GitHub
       link: https://github.com/shingle666/element-plus-study
+    - theme: alt
+      text: 中文版
+      link: /zh/
 
 features:
   - icon: 🚀

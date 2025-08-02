@@ -18,6 +18,9 @@ hero:
     - theme: alt
       text: 在 GitHub 上查看
       link: https://github.com/shingle666/element-plus-study
+    - theme: alt
+      text: English
+      link: /
 
 features:
   - icon: 🚀
@@ -39,3 +42,4 @@ features:
     title: 开源贡献
     details: 了解如何参与开源项目贡献，提升个人技术影响力和职业发展
 ---
+
