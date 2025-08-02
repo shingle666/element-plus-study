@@ -66,8 +66,7 @@ export default defineConfig({
     
     // 社交链接
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' },
-      { icon: 'discord', link: 'https://discord.gg/gXK9XNzW3X' }
+      { icon: 'github', link: 'https://github.com/shingle666/element-plus-study' }
     ],
 
     // 搜索配置

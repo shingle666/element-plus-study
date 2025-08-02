@@ -1,6 +1,6 @@
 {
   "name": "study_element_plus",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Element Plus 学习宝典，全面掌握 Element Plus 框架的使用，能够熟练运用各种组件构建现代化的 Vue 3 应用程序。",
   "main": "index.js",
   "repository": {
