@@ -14,7 +14,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /element-plus-study-guide
+      link: /en/element-plus-study-guide
     - theme: alt
       text: View on GitHub
       link: https://github.com/shingle666/element-plus-study

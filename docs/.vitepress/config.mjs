@@ -20,6 +20,7 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en-US',
+      link: '/en/',
       ...enConfig
     },
     zh: {
@@ -61,7 +62,7 @@ export default defineConfig({
     logo: '/logo.svg',
     
     // 语言切换路径映射
-    i18nRouting: false,
+    i18nRouting: true,
     
     // 社交链接
     socialLinks: [
